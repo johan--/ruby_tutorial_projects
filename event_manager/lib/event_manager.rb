@@ -8,6 +8,18 @@ def clean_zipcode(zipcode)
   zipcode.to_s.rjust(5,"0")[0..4]
 end
 
+def clean_phone(homephone)
+  phone_number = homephone.to_s.gsub(/[\.\-()\s]/,"")
+
+  if phone_number.length == 10
+    phone_number
+  elsif phone_number.length == 11 && phone_number.split(//)[0] == "1"
+    phone_number[1..10]
+  else
+    ""
+  end
+end
+
 def legislators_by_zipcode(zipcode)
   Sunlight::Congress::Legislator.by_zipcode(zipcode)
 end
@@ -32,6 +44,7 @@ erb_template = ERB.new template_letter
 contents.each do |row|
   id = row[0]
   name = row[:first_name]
+  phone = clean_phone(row[:homephone])
   zipcode = clean_zipcode(row[:zipcode])
   legislators = legislators_by_zipcode(zipcode)
 
@@ -41,18 +54,6 @@ contents.each do |row|
 end
 
 =begin
-Iteration: Clean Phone Numbers
-
-Similar to the zip codes the phone numbers suffer from multiple formats and inconsistencies. If we wanted to allow individuals to sign up for mobile alerts with the phone numbers we would need to make sure all of the numbers are valid and well-formed.
-
-If the phone number is less than 10 digits assume that it is a bad number
-If the phone number is 10 digits assume that it is good
-If the phone number is 11 digits and the first number is 1, trim the 1 and use the first 10 digits
-If the phone number is 11 digits and the first number is not 1, then it is a bad number
-If the phone number is more than 11 digits assume that it is a bad number
-
-
-
 Iteration: Time Targeting
 
 The boss is already thinking about the next conference: "Next year I want to make better use of our Google and Facebook advertising. Find out which hours of the day the most people registered so we can run more ads during those hours." Interesting!
