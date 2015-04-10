@@ -1,5 +1,5 @@
 class Encryptor
-  def cipher
+  def cipher(rotation)
     characters = (' '..'z').to_a
     rotated_characters = characters.rotate(rotation)
     Hash[characters.zip(rotated_characters)]
@@ -10,23 +10,23 @@ class Encryptor
     cipher_for_rotation[letter]
   end
 
-  def encrypt(string)
-    # 1. Cut the input string into letters
-    letters = string.split("")
-
-    # 2. Encrypt those letters one at a time, gathering the results
-    results = []
-    letters.each do |letter|
-      encrypted_letter = encrypt_letter(letter)
-      results.push(encrypted_letter)
-    end
-
-    # 3. Join the results back together in one string
-    results.join
+  def decrypt_letter(letter,rotation)
+    cipher_for_rotation = cipher(-rotation)
+    cipher_for_rotation[letter]
   end
 
-  def decrypt(string)
+  def encrypt(string, rotation)
+    letters = string.split("")
+    letters.map do |letter|
+      encrypt_letter(letter, rotation)
+    end.join
+  end
 
+  def decrypt(string, rotation)
+    letters = string.split("")
+    letters.map do |letter|
+      decrypt_letter(letter, rotation)
+    end.join
   end
 
   def encrypt_file(filename, rotation)
