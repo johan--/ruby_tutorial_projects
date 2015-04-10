@@ -30,38 +30,25 @@ class Encryptor
   end
 
   def encrypt_file(filename, rotation)
-    # Add this pseudocode into the method as comments:
-    #
-    # Create the file handle to the input file
-    # Read the text of the input file
-    # Encrypt the text
-    # Create a name for the output file
-    # Create an output file handle
-    # Write out the text
-    # Close the file
-    #
-    # You’ve seen all the components that you need here. Figure out how to
-    # implement this method on your own. Here are a few notes to help you:
-    #
-    # Use the filename variable from the parameter with the File.open call.
-    # Remember to specify the right read/write mode.
-    # Just call the same method you did before to read the contents. You’ll need
-    # to save this into a variable.
-    # Call your .encrypt method passing in the text from step 2 and the rotation
-    # parameter
-    # Name the output file the same as the input file, but with ".encrypted" on
-    # the end. So an input file named "sample.txt" would generate a file named
-    # "sample.txt.encrypted". Store the name in a variable.
-    # Create a new file handle with the name from step 4 and remember the
-    # correct read/write mode.
-    # Use the .write method like before.
-    # Call .close on the output file handle
+    input = File.open(filename, "r")
+    text = input.read
+    encrypted_text = encrypt(text, rotation)
+    output_filename = "#{filename}.encrypted"
+    output = File.open(output_filename, "w")
+    output.write(encrypted_text)
+    output.close
+    input.close
   end
 
   def decrypt_file(filename, rotation)
     input = File.open(filename, "r")
-
+    text = input.read
+    decrypted_text = decrypt(text, rotation)
     output_filename = filename.gsub("encrypted", "decrypted")
+    output = File.open(output_filename, "w")
+    output.write(decrypted_text)
+    output.close
+    input.close
   end
 
   def supported_characters
