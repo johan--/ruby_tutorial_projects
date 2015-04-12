@@ -6,17 +6,15 @@ require 'sinatra'
 
 get '/' do
   number = @@secret_number
+  message = "Start guessing a number"
+
   guess = params["guess"]
   cheat = params["cheat"]
-  message = "Start guessing a number"
+
   message = check_guess(guess) unless guess.nil?
-  if message.include?("limit") || message.include?("right")
-    @@number_of_guesses = 5
-    @@secret_number = rand(100)
-  end
-  if cheat 
-    message = "CHEAT CODE ACTIVATED: The number is #{@@secret_number}"
-  end
+  check_variables_to_reset(message)
+  cheat_message if cheat
+
   erb :index, :locals => {:number => number, :message => message}
 end
 
@@ -38,4 +36,15 @@ def check_guess(guess)
   else
     "Something went wrong."
   end
+end
+
+def check_variables_to_reset(message)
+  if message.include?("limit") || message.include?("right")
+    @@number_of_guesses = 5
+    @@secret_number = rand(100)
+  end
+end
+
+def cheat_message
+  message = "CHEAT CODE ACTIVATED: The number is #{@@secret_number}"
 end
