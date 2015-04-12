@@ -1,5 +1,15 @@
 <html>
-  <head></head>
+<head>
+  <% if message.include? "Way" %>
+    <style> body { background: red; } </style>
+  <% elsif message.include? "Too" %>
+    <style> body { background: tomato; } </style>
+  <% elsif message.include? "SECRET" %>
+    <style> body { background: green; } </style>
+  <% else %>
+    <style> body { background: white; } </style>
+  <% end %>
+</head>
   <body>
     <p>
       <%= message %>

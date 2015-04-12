@@ -6,7 +6,8 @@ SECRET_NUMBER = rand(100)
 get '/' do
   number = SECRET_NUMBER
   guess = params["guess"]
-  message = check_guess(guess)
+  message = "Start guessing a number"
+  message = check_guess(guess) unless guess.nil?
   erb :index, :locals => {:number => number, :message => message}
 end
 
