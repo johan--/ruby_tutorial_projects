@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'sinatra/reloader'
+#require 'sinatra/reloader'
 
 SECRET_NUMBER = rand(100)
 
@@ -11,12 +11,6 @@ get '/' do
 end
 
 def check_guess(guess)
-  # When the guess is more than five numbers too high, print a message "Way too
-  # high!".
-  #
-  # When the guess is more than five number too low, print a message "Way too
-  # low!".
-  #
   # Colorizing the Output
   #
   # Can you make it so they only get five guesses before a new number is
@@ -38,12 +32,15 @@ def check_guess(guess)
   # They unlock the cheat mode. When cheat is true, the page should always print
   # out the secret number so they can get it right on the next guess.
   #
-
-  if guess.to_f < SECRET_NUMBER
-    "Too low!"
-  elsif guess.to_f > SECRET_NUMBER
-    "Too high!"
-  else
+  if guess.to_f == SECRET_NUMBER
     "You got it right! The SECRET NUMBER is #{SECRET_NUMBER}"
+  elsif guess.to_f > (SECRET_NUMBER - 5) && guess.to_f < (SECRET_NUMBER + 5)
+    guess.to_f < SECRET_NUMBER ? "Too low!" : "Too high!"
+  elsif guess.to_f < SECRET_NUMBER
+    "Way too low!"
+  elsif guess.to_f > SECRET_NUMBER
+    "Way too high!"
+  else
+    "Something went wrong."
   end
 end
