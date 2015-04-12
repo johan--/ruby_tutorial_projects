@@ -1,5 +1,6 @@
-# [Jumpstart Tutorial](http://tutorials.jumpstartlab.com/projects/blogger.html)
-# Possible Future Exercises
+# [Jumpstart Lab Tutorial](http://tutorials.jumpstartlab.com/projects/blogger.html)
+
+## Possible Future Exercises
 
 * What could be done to make the ownership of articles more explicit and secure,
   and how could we restrict articles to being edited only by their original

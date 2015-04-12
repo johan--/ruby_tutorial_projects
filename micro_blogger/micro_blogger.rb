@@ -78,5 +78,3 @@ end
 blogger = MicroBlogger.new
 blogger.tweet("MicroBlogger Initialized")
 blogger.klout_score
-
-# http://tutorials.jumpstartlab.com/projects/microblogger.html
