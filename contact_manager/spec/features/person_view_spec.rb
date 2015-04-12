@@ -110,5 +110,18 @@ describe 'the person view', type: :feature do
       expect(page).to have_content('ruby@rspec.com')
       expect(page).to_not have_content(old_email)
     end
+
+    it 'has links to delete email addresses' do
+      person.email_addresses.each do |email|
+        expect(page).to have_link('delete', href: email_address_path(email))
+      end
+    end
+
+    it 'deletes a phone number' do
+      first(:link, 'delete').click
+      expect(current_path).to eq(person_path(person))
+      expect(page).to_not have_content('john@example.com')
+    end
+
   end
 end
