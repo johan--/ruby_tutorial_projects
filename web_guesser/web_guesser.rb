@@ -7,20 +7,20 @@ require 'sinatra'
 get '/' do
   number = @@secret_number
   guess = params["guess"]
+  cheat = params["cheat"]
   message = "Start guessing a number"
   message = check_guess(guess) unless guess.nil?
   if message.include?("limit") || message.include?("right")
     @@number_of_guesses = 5
     @@secret_number = rand(100)
   end
+  if cheat 
+    message = "CHEAT CODE ACTIVATED: The number is #{@@secret_number}"
+  end
   erb :index, :locals => {:number => number, :message => message}
 end
 
 def check_guess(guess)
-  # http://localhost:4567/?guess=56&cheat=true
-  # They unlock the cheat mode. When cheat is true, the page should always print
-  # out the secret number so they can get it right on the next guess.
-  
   @@number_of_guesses -= 1
 
   if @@number_of_guesses == 0
