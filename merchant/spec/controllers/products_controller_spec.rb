@@ -6,11 +6,12 @@ RSpec.describe ProductsController, type: :controller do
   let(:valid_attributes) {
     { title: "Green Grapes(1 bunch)",
       price: 2.00,
-      description: "1 bunch of approximately 80 green grapes."}
+      description: "1 bunch of approximately 80 green grapes.",
+      stock: 0}
   }
 
   let(:invalid_attributes) {
-    { title: nil, price: nil, description: nil }
+    { title: nil, price: nil, description: nil, stock: nil }
   }
 
   let(:valid_session) { {} }
@@ -84,7 +85,8 @@ RSpec.describe ProductsController, type: :controller do
       let(:new_attributes) {
         { title: "Purple Grapes(1 bunch)",
           price: 2.25,
-          description: "1 bunch of approximately 90 purple grapes."}
+          description: "1 bunch of approximately 90 purple grapes.",
+          stock: 50}
       }
 
       it "updates the requested product" do
