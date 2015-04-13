@@ -6,7 +6,7 @@ class OrderItemsController < ApplicationController
   end
 
   def create
-    @order_item = OrderItem.new(product_id: params[:product_id], order_id: @order.id)
+    @order_item = @order.order_items.new(quantity: 1, product_id: params[:product_id])
 
     respond_to do |format|
       if @order_item.save
@@ -49,7 +49,7 @@ class OrderItemsController < ApplicationController
     end
 
     def load_order
-      @order = Order.find_or_initialize_by_id(session[:order_id], status: "unsubmitted")
+      @order = Order.find_or_create_by({id: session[:order_id], status: "unsubmitted"})
       if @order.new_record?
         @order.save!
         session[:order_id] = @order.id

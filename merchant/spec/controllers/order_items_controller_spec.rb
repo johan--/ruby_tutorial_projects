@@ -40,7 +40,7 @@ RSpec.describe OrderItemsController, type: :controller do
 
       it "redirects to the created order_item" do
         post :create, {:order_item => valid_attributes}, valid_session
-        expect(response).to redirect_to(OrderItem.last)
+        expect(response).to redirect_to(order)
       end
     end
 
