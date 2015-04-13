@@ -20,9 +20,10 @@ RSpec.describe "products/index", type: :view do
 
   it "renders a list of products" do
     render
-    assert_select "tr>td", :text => "Title".to_s, :count => 2
-    assert_select "tr>td", :text => "9.99".to_s, :count => 2
-    assert_select "tr>td", :text => "MyText".to_s, :count => 2
-    assert_select "tr>td", :text => "Image Url".to_s, :count => 2
+
+    expect(rendered).to match /Title/
+    expect(rendered).to match /MyText/
+    expect(rendered).to match /products\/Image Url/
+    expect(rendered).to match /\$9.99/
   end
 end
