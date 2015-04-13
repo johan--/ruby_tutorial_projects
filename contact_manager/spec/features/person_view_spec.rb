@@ -77,7 +77,7 @@ describe 'the person view', type: :feature do
     end
 
     it 'has a link to add a new email address' do
-      expect(page).to have_link('Add email address', href: new_email_address_path(person_id: person.id))
+      expect(page).to have_link('Add email address', href: new_email_address_path(contact_id: person.id, contact_type: 'Person'))
     end
 
     it 'has an add email address link that can be clicked to new email address' do
@@ -117,7 +117,7 @@ describe 'the person view', type: :feature do
       end
     end
 
-    it 'deletes a phone number' do
+    it 'deletes an email address' do
       first(:link, 'delete').click
       expect(current_path).to eq(person_path(person))
       expect(page).to_not have_content('john@example.com')
