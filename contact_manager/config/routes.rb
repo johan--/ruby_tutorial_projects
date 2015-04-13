@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :email_addresses, :except => [:index, :show]
   resources :phone_numbers, :except => [:index, :show]
   resources :people
+  get '/auth/:provider/callback' => 'sessions#create'
 end
