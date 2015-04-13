@@ -8,7 +8,7 @@ RSpec.describe OrderItemsController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    { product_id: nil, order_id: nil, quantity: nil}
+    { product_id: nil, order_id: nil, quantity: 1}
   }
 
   # This should return the minimal set of values that should be in the session

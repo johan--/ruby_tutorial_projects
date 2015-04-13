@@ -4,6 +4,7 @@ class OrderItem < ActiveRecord::Base
 
   validates_presence_of :order_id
   validates_presence_of :product_id
+  validates :quantity, numericality: { only_integer: true, greater_than: 0 }
 
   def subtotal
     quantity*product.price

@@ -1,5 +1,5 @@
 class OrderItemsController < ApplicationController
-  before_action :set_order_item, only: [:edit, :update, :destroy]
+  before_action :set_order_item, only: [:edit, :destroy]
   before_action :load_order, only: [:create, :destroy, :update]
 
   def edit
@@ -21,9 +21,13 @@ class OrderItemsController < ApplicationController
   end
 
   def update
+    @order_item = OrderItem.find(params[:id])
     respond_to do |format|
-      if @order_item.update(order_item_params)
-        format.html { redirect_to @order, notice: 'Order item was successfully updated.' }
+      if params[:order_item][:quantity].to_i == 0
+        @order_item.destroy
+        format.html { redirect_to @order, notice: "Item has been removed"}
+      elsif @order_item.update(order_item_params)
+        format.html { redirect_to @order, notice: 'Successfully updated the order item.' }
         format.json { render :show, status: :ok, location: @order_item }
       else
         format.html { render :edit }
