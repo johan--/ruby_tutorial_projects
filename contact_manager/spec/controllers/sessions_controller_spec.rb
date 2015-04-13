@@ -27,6 +27,17 @@ describe SessionsController do
       post :create
       expect(controller.current_user.id).to eq(user.id)
     end
+
+    it 'redirects to the companies page' do
+      request.env["omniauth.auth"] = {
+        'provider' => 'twitter',
+        'info' => {'name' => 'Charlie Allen'},
+        'uid' => 'prq987'
+      }
+      user = User.create(provider: 'twitter', uid: 'prq987', name: 'Charlie Allen')
+      post :create
+      expect(response).to redirect_to(root_path)
+    end
   end
 
 end

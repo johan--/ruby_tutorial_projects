@@ -1,8 +1,7 @@
 class SessionsController < ApplicationController
   def create
-    data = request.env['omniauth.auth']
-    user = User.where(:provider => data['provider'], :uid => data['uid'], :name => data['info']['name']).first_or_create
+    user = User.find_or_create_by_auth(request.env['omniauth.auth'])
     session[:user_id] = user.id
-    render :nothing => true
+    redirect_to root_path, notice: "Logged in as #{user.name}"
   end
 end
