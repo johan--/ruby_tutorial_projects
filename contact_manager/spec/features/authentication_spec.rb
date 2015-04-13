@@ -29,6 +29,7 @@ describe 'the application', type: :feature do
     before(:each) do
       Rails.application.routes.draw do
         root to: 'companies#index'
+        resources :company
         get '/fake_login' => 'fake_sessions#create', as: :fake_login
         get '/login' => redirect('/auth/twitter'), as: :login
         delete "/logout" => "sessions#destroy", as: :logout
