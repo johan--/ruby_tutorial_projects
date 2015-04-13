@@ -38,3 +38,5 @@
     <td><%= print_price @order.total %></td>
   </tr>
 </table>
+
+<%= button_to "Empty Cart", @order, data: { confirm: 'Are you sure?' }, method: :delete %>

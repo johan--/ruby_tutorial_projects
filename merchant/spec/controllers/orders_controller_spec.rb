@@ -131,7 +131,7 @@ RSpec.describe OrdersController, type: :controller do
     it "redirects to the orders list" do
       order = Order.create! valid_attributes
       delete :destroy, {:id => order.to_param}, valid_session
-      expect(response).to redirect_to(orders_url)
+      expect(response).to redirect_to(products_path)
     end
   end
 
