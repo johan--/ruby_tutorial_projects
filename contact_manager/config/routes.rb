@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :companies
-  resources :email_addresses
-  resources :phone_numbers
+  resources :email_addresses, :except => [:index, :show]
+  resources :phone_numbers, :except => [:index, :show]
   resources :people
 end
