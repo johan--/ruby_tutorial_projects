@@ -51,7 +51,7 @@ describe SessionsController do
       user = User.create(provider: 'twitter', uid: 'prq987', name: 'Charlie Allen')
 
       delete :destroy
-      expect(controller.current_user.id).to_not eq(user.id)
+      expect(controller.current_user).to be_nil
     end
 
     it 'redirects to the companies page' do
