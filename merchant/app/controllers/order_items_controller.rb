@@ -1,6 +1,6 @@
 class OrderItemsController < ApplicationController
   before_action :set_order_item, only: [:edit, :update, :destroy]
-  before_action :load_order, only: [:create]
+  before_action :load_order, only: [:create, :destroy]
 
   def edit
   end
@@ -34,7 +34,7 @@ class OrderItemsController < ApplicationController
   def destroy
     @order_item.destroy
     respond_to do |format|
-      format.html { redirect_to order_items_url, notice: 'Order item was successfully destroyed.' }
+      format.html { redirect_to @order, notice: 'Order item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

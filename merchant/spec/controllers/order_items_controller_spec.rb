@@ -109,7 +109,7 @@ RSpec.describe OrderItemsController, type: :controller do
     it "redirects to the order_items list" do
       order_item = OrderItem.create! valid_attributes
       delete :destroy, {:id => order_item.to_param}, valid_session
-      expect(response).to redirect_to(order_items_url)
+      expect(response).to redirect_to(order)
     end
   end
 
