@@ -40,4 +40,30 @@ describe SessionsController do
     end
   end
 
+  describe "#destroy" do
+
+    it 'removes the user_id in the session' do
+      request.env["omniauth.auth"] = {
+        'provider' => 'twitter',
+        'info' => {'name' => 'Charlie Allen'},
+        'uid' => 'prq987'
+      }
+      user = User.create(provider: 'twitter', uid: 'prq987', name: 'Charlie Allen')
+
+      delete :destroy
+      expect(controller.current_user.id).to_not eq(user.id)
+    end
+
+    it 'redirects to the companies page' do
+      request.env["omniauth.auth"] = {
+        'provider' => 'twitter',
+        'info' => {'name' => 'Charlie Allen'},
+        'uid' => 'prq987'
+      }
+      user = User.create(provider: 'twitter', uid: 'prq987', name: 'Charlie Allen')
+      delete :destroy
+      expect(response).to redirect_to(root_path)
+    end
+
+  end
 end
