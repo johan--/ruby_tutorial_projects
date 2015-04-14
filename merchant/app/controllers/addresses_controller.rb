@@ -9,7 +9,7 @@ class AddressesController < ApplicationController
   end
 
   def new
-    @address = current_user.address
+    @address = Address.new
   end
 
   def edit
