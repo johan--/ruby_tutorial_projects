@@ -2,9 +2,6 @@
 
 ## Further exercises
 
-* [Establishing
-  Identity](http://tutorials.jumpstartlab.com/projects/merchant.html#iteration-6:-establishing-identity)
-
 * [Checkout](http://tutorials.jumpstartlab.com/projects/merchant.html#iteration-7:-checkout)
 
 * Add authorization so only administrators can add or change product information
