@@ -2,8 +2,6 @@
 
 ## Further exercises
 
-* [Checkout](http://tutorials.jumpstartlab.com/projects/merchant.html#iteration-7:-checkout)
-
 * Add authorization so only administrators can add or change product information
 
 * Create an admin interface for viewing and modifying all orders
