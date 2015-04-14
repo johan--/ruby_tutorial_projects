@@ -54,7 +54,7 @@ class OrderItemsController < ApplicationController
     end
 
     def load_order
-      @order = Order.find_or_create_by({id: session[:order_id], status: "unsubmitted"})
+      @order = Order.find_or_create_by({id: session[:order_id], status: "unsubmitted"}, user_id: session[:user_id])
       if @order.new_record?
         @order.save!
         session[:order_id] = @order.id
