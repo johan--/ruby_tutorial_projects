@@ -4,11 +4,13 @@ describe 'the person view', type: :feature do
 
   describe 'for phone numbers' do
 
-    let(:person) { Person.create(first_name: 'John', last_name: 'Doe') }
+    let(:person) { Fabricate(:person) }
+    let(:user) { person.user }
 
     before(:each) do
       person.phone_numbers.create(number: '555-1234')
       person.phone_numbers.create(number: '555-5678')
+      login_as(user)
       visit person_path(person)
     end
 
@@ -63,11 +65,13 @@ describe 'the person view', type: :feature do
   end
 
   describe 'for email addresses' do
-    let(:person) { Person.create(first_name: 'John', last_name: 'Doe') }
+    let(:person) { Fabricate(:person) }
+    let(:user) { person.user }
 
     before(:each) do
       person.email_addresses.create(address: 'john@example.com')
       person.email_addresses.create(address: 'doe@example.com')
+      login_as(user)
       visit person_path(person)
     end
 

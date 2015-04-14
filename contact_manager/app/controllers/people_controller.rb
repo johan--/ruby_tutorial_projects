@@ -51,7 +51,7 @@ class PeopleController < ApplicationController
 
   private
     def set_person
-      @person = Person.find(params[:id])
+      @person = current_user.people.find(params[:id])
     end
 
     def person_params
