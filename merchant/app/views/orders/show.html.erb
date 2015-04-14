@@ -39,6 +39,15 @@
   <tr>
     <td><%= print_price @order.total %></td>
   </tr>
+  <tr>
+    <th>Shipping To:</th>
+    <td>
+      <%= form_for @order do |f| %>
+      <%= f.select :address_id, current_user.addresses.collect{|a| [a.to_s, a.id]} %>
+      (add an address link)
+      <% end %>
+    </td>
+  </tr>
 </table>
 
 <%= button_to "Empty Cart", @order, data: { confirm: 'Are you sure?' }, method: :delete %>
