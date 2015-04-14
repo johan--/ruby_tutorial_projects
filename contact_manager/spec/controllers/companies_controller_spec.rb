@@ -3,15 +3,17 @@ require 'rails_helper'
 
 RSpec.describe CompaniesController, type: :controller do
 
+  let(:user) { Fabricate(:user) }
+
   let(:valid_attributes) {
-    { name: 'Acme' }
+    { name: 'Acme' , user_id: user.id}
   }
 
   let(:invalid_attributes) {
     { name: nil }
   }
 
-  let(:valid_session) { {} }
+  let(:valid_session) { { user_id: user.id } }
 
   describe "GET #index" do
     it "assigns all companies as @companies" do
@@ -80,7 +82,7 @@ RSpec.describe CompaniesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        { name: 'newname' }
+        { name: 'newname', user_id: user.id }
       }
 
       it "updates the requested company" do

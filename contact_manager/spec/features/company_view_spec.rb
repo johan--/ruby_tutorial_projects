@@ -5,11 +5,13 @@ describe 'the company view', type: :feature do
 
   describe 'for phone numbers' do
 
-    let(:company) { Company.create(name: 'Acme') }
+    let(:company) { Fabricate(:company) }
+    let(:user) { company.user }
 
     before(:each) do
       company.phone_numbers.create(number: '555-1234')
       company.phone_numbers.create(number: '555-5678')
+      login_as(user)
       visit company_path(company)
     end
 
@@ -64,11 +66,14 @@ describe 'the company view', type: :feature do
   end
 
   describe 'for email addresses' do
-    let(:company) { Company.create(name: 'Acme') }
+
+    let(:company) { Fabricate(:company) }
+    let(:user) { company.user }
 
     before(:each) do
       company.email_addresses.create(address: 'john@example.com')
       company.email_addresses.create(address: 'doe@example.com')
+      login_as(user)
       visit company_path(company)
     end
 
