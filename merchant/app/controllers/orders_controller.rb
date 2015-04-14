@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :confirm]
 
   def index
     @orders = Order.all
@@ -31,8 +31,9 @@ class OrdersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+      if @order.update(order_params.merge(status: 'submitted'))
+        session[:order_id] = nil
+        format.html { redirect_to confirm_order_path(@order) }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -49,12 +50,15 @@ class OrdersController < ApplicationController
     end
   end
 
+  def confirm
+  end
+
   private
     def set_order
       @order = Order.find(params[:id])
     end
 
     def order_params
-      params.require(:order).permit(:user_id, :status)
+      params.require(:order).permit(:user_id, :status, :address_id)
     end
 end
