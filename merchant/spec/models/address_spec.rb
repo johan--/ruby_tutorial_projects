@@ -8,6 +8,8 @@ RSpec.describe Address, type: :model do
                                  zip: "12345",
                                  user_id: 1)}
 
+  it { should belong_to(:user) }
+  it { should have_many(:orders) }
   it { should validate_presence_of(:line1) }
   it { should validate_presence_of(:city) }
   it { should validate_presence_of(:state) }
