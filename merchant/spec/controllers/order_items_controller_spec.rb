@@ -11,11 +11,8 @@ RSpec.describe OrderItemsController, type: :controller do
     { product_id: nil, order_id: nil, quantity: 1}
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # OrderItemsController. Be sure to keep this updated too.
   let(:valid_session) { 
-    { order_id: order.id } 
+    { order_id: order.id , user_id: 1} 
   }
 
   describe "GET #edit" do
@@ -81,7 +78,7 @@ RSpec.describe OrderItemsController, type: :controller do
       it "redirects to the order_item" do
         order_item = OrderItem.create! valid_attributes
         put :update, {:id => order_item.to_param, :order_item => valid_attributes}, valid_session
-        expect(response).to redirect_to(order)
+        expect(response).to redirect_to(order_path(order))
       end
     end
 
@@ -111,7 +108,7 @@ RSpec.describe OrderItemsController, type: :controller do
     it "redirects to the order_items list" do
       order_item = OrderItem.create! valid_attributes
       delete :destroy, {:id => order_item.to_param}, valid_session
-      expect(response).to redirect_to(order)
+      expect(response).to redirect_to(order_path(order))
     end
   end
 
