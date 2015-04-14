@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  root 'products#index'
   resources :orders
   resources :order_items, except: [:show, :index, :new]
-  root 'products#index'
   resources :products
+
+  get '/auth/:provider/callback' => 'sessions#create'
 end
