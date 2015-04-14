@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AddressesController, type: :controller do
+  let(:user) { User.create(name: "someone") }
 
   let(:valid_attributes) {
     { line1: "1 Street", 
@@ -18,7 +19,9 @@ RSpec.describe AddressesController, type: :controller do
       user_id: nil}
   }
 
-  let(:valid_session) { {} }
+  let(:valid_session) {
+    { order_id: 1 , user_id: user.id}
+  }
 
   describe "GET #index" do
     it "assigns all addresses as @addresses" do
