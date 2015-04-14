@@ -3,16 +3,13 @@ require 'rails_helper'
 RSpec.describe OrdersController, type: :controller do
 
   let(:valid_attributes) {
-    { user_id: 1, status: 'status' }
+    { user_id: 1, status: 'unsubmitted' , address_id: 1}
   }
 
   let(:invalid_attributes) {
-    { user_id: nil, status: nil }
+    { user_id: nil, status: nil, address_id: nil }
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # OrdersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
@@ -82,14 +79,14 @@ RSpec.describe OrdersController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        { user_id: 1, status: 'new status' }
+        { user_id: 1, status: 'submitted' }
       }
 
       it "updates the requested order" do
         order = Order.create! valid_attributes
         put :update, {:id => order.to_param, :order => new_attributes}, valid_session
         order.reload
-        expect(order.status).to eq('new status')
+        expect(order.status).to eq('submitted')
       end
 
       it "assigns the requested order as @order" do
@@ -101,7 +98,7 @@ RSpec.describe OrdersController, type: :controller do
       it "redirects to the order" do
         order = Order.create! valid_attributes
         put :update, {:id => order.to_param, :order => valid_attributes}, valid_session
-        expect(response).to redirect_to(order)
+        expect(response).to redirect_to(confirm_order_path(order))
       end
     end
 

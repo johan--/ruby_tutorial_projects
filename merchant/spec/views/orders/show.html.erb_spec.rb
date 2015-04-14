@@ -10,7 +10,6 @@ RSpec.describe "orders/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/1/)
     expect(rendered).to match(/Status/)
   end
 end
