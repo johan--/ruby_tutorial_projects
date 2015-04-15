@@ -1,3 +1,4 @@
 class User < ActiveRecord::Base
-  validates_presence_of :name, :email
+  validates :name,  presence: true, length: { maximum: 50 }
+  validates :email, presence: true, length: { maximum: 255 }
 end
