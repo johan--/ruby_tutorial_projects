@@ -24,11 +24,11 @@ RSpec.describe MicropostsController, type: :controller do
   # Micropost. As you add validations to Micropost, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { content: "Sample", user_id: 1}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { content: "#{'a'*141}", user_id: nil }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +103,14 @@ RSpec.describe MicropostsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { content: "New Sample", user_id: 1 }
       }
 
       it "updates the requested micropost" do
         micropost = Micropost.create! valid_attributes
         put :update, {:id => micropost.to_param, :micropost => new_attributes}, valid_session
         micropost.reload
-        skip("Add assertions for updated state")
+        expect(micropost.content).to eq("New Sample")
       end
 
       it "assigns the requested micropost as @micropost" do
