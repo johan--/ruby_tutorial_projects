@@ -8,17 +8,6 @@ by [Michael Hartl](http://www.michaelhartl.com/).
 ## Possible improvements
 
 ### Chapter 8:
-* In Listing 8.32, we defined the new token and digest class methods by
-  explicitly prefixing them with User. This works fine and, because they are
-actually called using User.new_token and User.digest, it is probably the
-clearest way to define them. But there are two perhaps more idiomatically
-correct ways to define class methods, one slightly confusing and one extremely
-confusing. By running the test suite, verify that the implementations in Listing
-8.59 (slightly confusing) and Listing 8.60 (extremely confusing) are correct.
-(Note that, in the context of Listing 8.59 and Listing 8.60, self is the User
-class, whereas the other uses of self in the User model refer to a user object
-instance. This is part of what makes them confusing.)
-
 * As indicated in Section 8.4.6, as the application is currently designed
   there’s no way to access the virtual remember_token attribute in the
 integration test in Listing 8.51. It is possible, though, using a special test
