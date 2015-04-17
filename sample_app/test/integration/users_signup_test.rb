@@ -33,9 +33,11 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     # Try to log in before activation.
     log_in_as(user)
     assert_not is_logged_in?
+    assert_equal flash[:warning], "Account not activated. Check your email for the activation link."
     # Invalid activation token
     get edit_account_activation_path("invalid token")
     assert_not is_logged_in?
+    assert_equal flash[:warning], "Account not activated. Check your email for the activation link."
     # Valid token, wrong email
     get edit_account_activation_path(user.activation_token, email: 'wrong')
     assert_not is_logged_in?
@@ -44,6 +46,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert user.reload.activated?
     follow_redirect!
     assert_template 'users/show'
+    assert_not flash.alert, 'Invalid email/password combination'
     assert is_logged_in?
   end
 

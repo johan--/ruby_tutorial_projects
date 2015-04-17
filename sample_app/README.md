@@ -7,16 +7,6 @@ by [Michael Hartl](http://www.michaelhartl.com/).
 
 ## Possible improvements
 
-### Chapter 7:
-* Write a test for the flash implemented in Section 7.4.2. How detailed you want
-  to make your tests is up to you; a suggested ultra-minimalist template appears
-in Listing 7.33, which you should complete by replacing FILL_IN with the
-appropriate code. (Even testing for the right key, much less the text, is likely
-to be brittle, so I prefer only to test that the flash isn’t nil.)
-* As noted in Section 7.4.2, the flash HTML in Listing 7.25 is ugly. Verify by
-  running the test suite that the cleaner code in Listing 7.34, which uses the
-Rails content_tag helper, also works.
-
 ### Chapter 8:
 * In Listing 8.32, we defined the new token and digest class methods by
   explicitly prefixing them with User. This works fine and, because they are
