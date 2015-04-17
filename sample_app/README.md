@@ -8,9 +8,6 @@ by [Michael Hartl](http://www.michaelhartl.com/).
 ## Possible improvements
 
 ### Chapter 7:
-* Write a test for the error messages implemented in Listing 7.18. How detailed
-  you want to make your tests is up to you; a suggested template appears in
-Listing 7.32.
 * Write a test for the flash implemented in Section 7.4.2. How detailed you want
   to make your tests is up to you; a suggested ultra-minimalist template appears
 in Listing 7.33, which you should complete by replacing FILL_IN with the
