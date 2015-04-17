@@ -15,11 +15,6 @@ revert to the default (i.e., the profile page). Hint: Add to the test in Listing
 * Write an integration test for all the layout links, including the proper
   behavior for logged-in and non-logged-in users. Hint: Add to the test in
 Listing 5.25 using the log_in_as helper.
-* By issuing a PATCH request directly to the update method as shown in Listing
-  9.59, verify that the admin attribute isn’t editable through the web. To be
-sure your test is covering the right thing, your first step should be to add
-admin to the list of permitted parameters in user_params so that the initial
-test is red.
 * Remove the duplicated form code by refactoring the new.html.erb and
   edit.html.erb views to use the partial in Listing 9.60. Note that you will
 have to pass the form variable f explicitly as a local variable, as shown in
