@@ -8,14 +8,6 @@ by [Michael Hartl](http://www.michaelhartl.com/).
 ## Possible improvements
 
 ### Chapter 6: 
-* Add a test for the email downcasing from Listing 6.31, as shown in
-Listing 6.41. This test uses the reload method for reloading a value from the
-database and the assert_equal method for testing equality. To verify that
-Listing 6.41 tests the right thing, comment out the before_save line to get to
-red, then uncomment it to get to green. 
-* By running the test suite, verify that
-the before_save callback can be written using the “bang” method email.downcase!
-to modify the email attribute directly, as shown in Listing 6.42. 
 * As noted in
 Section 6.2.4, the email regex in Listing 6.21 allows invalid email addresses
 with consecutive dots in the domain name, i.e., addresses of the form
