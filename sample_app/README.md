@@ -7,14 +7,6 @@ by [Michael Hartl](http://www.michaelhartl.com/).
 
 ## Possible improvements
 
-### Chapter 6: 
-* As noted in
-Section 6.2.4, the email regex in Listing 6.21 allows invalid email addresses
-with consecutive dots in the domain name, i.e., addresses of the form
-foo@bar..com. Add this address to the list of invalid addresses in Listing 6.19
-to get a failing test, and then use the more complicated regex shown in Listing
-6.43 to get the test to pass.
-
 ### Chapter 7:
 * Verify that the code in Listing 7.31 allows the gravatar_for helper defined in
   Section 7.1.4 to take an optional size parameter, allowing code like
