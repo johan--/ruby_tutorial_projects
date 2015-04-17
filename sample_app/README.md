@@ -7,13 +7,6 @@ by [Michael Hartl](http://www.michaelhartl.com/).
 
 ## Possible improvements
 
-### Chapter 5: 
-* In the integration test from Listing 5.25, add code to visit the
-signup page using the get method and verify that the resulting page title is
-correct. 
-* Writing a direct test of the full_title helper, which involves creating
-a file to test the application helper and then filling in the code
-
 ### Chapter 6: 
 * Add a test for the email downcasing from Listing 6.31, as shown in
 Listing 6.41. This test uses the reload method for reloading a value from the
