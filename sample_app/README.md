@@ -7,20 +7,6 @@ by [Michael Hartl](http://www.michaelhartl.com/).
 
 ## Possible improvements
 
-### Chapter 8:
-* As indicated in Section 8.4.6, as the application is currently designed
-  there’s no way to access the virtual remember_token attribute in the
-integration test in Listing 8.51. It is possible, though, using a special test
-method called assigns. Inside a test, you can access instance variables defined
-in the controller by using assigns with the corresponding symbol. For example,
-if the create action defines an @user variable, we can access it in the test
-using assigns(:user). Right now, the Sessions controller create action defines a
-normal (non-instance) variable called user, but if we change it to an instance
-variable we can test that cookies correctly contains the user’s remember token.
-By filling in the missing elements in Listing 8.61 and Listing 8.62 (indicated
-with question marks ? and FILL_IN), complete this improved test of the “remember
-me” checkbox.
-
 ### Chapter 9:
 * Write a test to make sure that friendly forwarding only forwards to the given
   URL the first time. On subsequent login attempts, the forwarding URL should
