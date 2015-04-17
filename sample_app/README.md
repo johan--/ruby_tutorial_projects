@@ -15,10 +15,6 @@ revert to the default (i.e., the profile page). Hint: Add to the test in Listing
 * Write an integration test for all the layout links, including the proper
   behavior for logged-in and non-logged-in users. Hint: Add to the test in
 Listing 5.25 using the log_in_as helper.
-* Remove the duplicated form code by refactoring the new.html.erb and
-  edit.html.erb views to use the partial in Listing 9.60. Note that you will
-have to pass the form variable f explicitly as a local variable, as shown in
-Listing 9.61.
 
 ### Chapter 10:
 * Write an integration test for the expired password reset branch in Listing
