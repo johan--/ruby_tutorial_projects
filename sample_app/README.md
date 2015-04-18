@@ -12,8 +12,3 @@ by [Michael Hartl](http://www.michaelhartl.com/).
   URL the first time. On subsequent login attempts, the forwarding URL should
 revert to the default (i.e., the profile page). Hint: Add to the test in Listing
 9.26 by checking for the right value of session[:forwarding_url].
-
-### Chapter 12: 
-* Write tests for the stats on the Home and profile pages. Hint: Add to the test
-  in Listing 11.27. (Why don’t we have to test the stats on the Home page
-separately?)
