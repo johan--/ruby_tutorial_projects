@@ -1,6 +1,7 @@
 require 'csv'
 require 'sunlight/congress'
 require 'erb'
+require 'date'
 
 Sunlight::Congress.api_key = "e179a6973728c4dd3fb1204283aaccb5"
 
@@ -18,6 +19,10 @@ def clean_phone(homephone)
   else
     ""
   end
+end
+
+def clean_datetime(regdate)
+  DateTime.strptime(regdate, '%m/%d/%y %H:%M')
 end
 
 def legislators_by_zipcode(zipcode)
@@ -46,6 +51,8 @@ contents.each do |row|
   name = row[:first_name]
   phone = clean_phone(row[:homephone])
   zipcode = clean_zipcode(row[:zipcode])
+  datetime = clean_datetime(row[:RegDate])
+
   legislators = legislators_by_zipcode(zipcode)
 
   form_letter = erb_template.result(binding)
