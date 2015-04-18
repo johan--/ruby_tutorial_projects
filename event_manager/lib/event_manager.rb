@@ -46,6 +46,8 @@ contents = CSV.open 'event_attendees.csv', headers: true, header_converters: :sy
 template_letter = File.read "form_letter.erb"
 erb_template = ERB.new template_letter
 
+hour_of_registration = []
+
 contents.each do |row|
   id = row[0]
   name = row[:first_name]
@@ -53,9 +55,14 @@ contents.each do |row|
   zipcode = clean_zipcode(row[:zipcode])
   datetime = clean_datetime(row[:RegDate])
 
+  hour_of_registration << datetime.hour
+
   legislators = legislators_by_zipcode(zipcode)
 
   form_letter = erb_template.result(binding)
 
   save_thank_you_letters(id,form_letter)
 end
+
+frequency_hash = hour_of_registration.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
+most_common_hour = hour_of_registration.max_by { |v| frequency_hash[v] }
