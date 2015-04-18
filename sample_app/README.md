@@ -13,14 +13,6 @@ by [Michael Hartl](http://www.michaelhartl.com/).
 revert to the default (i.e., the profile page). Hint: Add to the test in Listing
 9.26 by checking for the right value of session[:forwarding_url].
 
-### Chapter 10:
-* In Listing 10.42, both the activate and create_reset_digest methods make two
-  calls to update_attribute, each of which requires a separate database
-transaction. By filling in the template shown in Listing 10.59, replace each
-pair of update_attribute calls with a single call to update_columns, which hits
-the database only once. After making the changes, verify that the test suite is
-still green.
-
 ### Chapter 11:
 * Refactor the Home page to use separate partials for the two branches of the
   if-else statement.
