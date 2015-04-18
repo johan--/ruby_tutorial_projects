@@ -1,15 +1,6 @@
 # [Jumpstart Lab Tutorial](http://tutorials.jumpstartlab.com/projects/encryptor.html)
 
 ## Further Exercise
-
-Real-Time Encryption
-
-You want to start using your encryption in more of your communication. Writing your original message to a file, encrypting it, and opening the file requires a lot of effort. It is not well suited for small amounts of text like a chat message or text messages.
-
-Create a system that will allow you to type a unencrypted message and have the encrypted version appear
-
-Create a system that will allow you to type an encrypted message and have the unencrypted message appear
-
 Password Protecting Your Encryptor
 
 The encryptor program does a fair job at protecting your correspondence. The messages you send to and from your friends are safe from prying eyes. However, your security would be compromised if your encryptor code fell into the wrong hands.
