@@ -50,4 +50,8 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_equal @user.name,  name
     assert_equal @user.email, email
   end
+
+  test "friendly forwarding reverts to default after the first time" do
+    skip("Figure out how to check for the right value of session[:forwarding_url")
+  end
 end
