@@ -6,7 +6,10 @@ class ProcessArtist < Processing::App
   end
 
   def draw
-    # Do Stuff
+    r = rand(20)
+    stroke_weight r
+    offset = r * 10
+    line mouse_x, 0, mouse_y + offset, height
   end
 
   def key_pressed
