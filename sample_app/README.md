@@ -14,12 +14,6 @@ revert to the default (i.e., the profile page). Hint: Add to the test in Listing
 9.26 by checking for the right value of session[:forwarding_url].
 
 ### Chapter 10:
-* Right now all users are displayed on the user index page at /users and are
-  visible via the URL /users/:id, but it makes sense to show users only if they
-are activated. Arrange for this behavior by filling in the template shown in
-Listing 10.58.9 (This uses the Active Record where method, which we’ll learn
-more about in Section 11.3.3.) Extra credit: Write integration tests for both
-/users and /users/:id.
 * In Listing 10.42, both the activate and create_reset_digest methods make two
   calls to update_attribute, each of which requires a separate database
 transaction. By filling in the template shown in Listing 10.59, replace each

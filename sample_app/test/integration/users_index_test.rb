@@ -30,4 +30,8 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     get users_path
     assert_select 'a', text: 'delete', count: 0
   end
+
+  test 'index as admin does not show inactive users' do
+    skip("figure out how inactive users should shown to admins")
+  end
 end
