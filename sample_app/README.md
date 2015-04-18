@@ -14,12 +14,6 @@ revert to the default (i.e., the profile page). Hint: Add to the test in Listing
 9.26 by checking for the right value of session[:forwarding_url].
 
 ### Chapter 10:
-* Write an integration test for the expired password reset branch in Listing
-  10.52 by filling in the template shown in Listing 10.57. (This code introduces
-response.body, which returns the full HTML body of the page.) There are many
-ways to test for the result of an expiration, but the method suggested by
-Listing 10.57 is to (case-insensitively) check that the response body includes
-the word “expired”.
 * Right now all users are displayed on the user index page at /users and are
   visible via the URL /users/:id, but it makes sense to show users only if they
 are activated. Arrange for this behavior by filling in the template shown in
