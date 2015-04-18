@@ -69,5 +69,9 @@ end
 frequency_hash_of_hour = hour_of_registration.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
 most_common_hour = hour_of_registration.max_by { |v| frequency_hash_of_hour[v] }
 
+days = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday ]
+days_hashmap = Hash[(0..6).zip(days)]
+
 frequency_hash_of_day = day_of_registration.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
-most_common_day = day_of_registration.max_by { |v| frequency_hash_of_day[v] }
+most_common_day_number = day_of_registration.max_by { |v| frequency_hash_of_day[v] }
+most_common_day = days_hashmap[most_common_day_number.to_i]
