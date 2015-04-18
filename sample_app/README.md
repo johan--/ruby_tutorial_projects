@@ -14,8 +14,6 @@ revert to the default (i.e., the profile page). Hint: Add to the test in Listing
 9.26 by checking for the right value of session[:forwarding_url].
 
 ### Chapter 11:
-* Refactor the Home page to use separate partials for the two branches of the
-  if-else statement.
 * Add tests for the sidebar micropost count (including proper pluralization).
   Listing 11.67 will help get you started.
 * Following the template in Listing 11.68, write a test of the image uploader in
