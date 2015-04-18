@@ -13,21 +13,6 @@ by [Michael Hartl](http://www.michaelhartl.com/).
 revert to the default (i.e., the profile page). Hint: Add to the test in Listing
 9.26 by checking for the right value of session[:forwarding_url].
 
-### Chapter 11:
-* Following the template in Listing 11.68, write a test of the image uploader in
-  Section 11.4. As preparation, you should add an image to the fixtures
-directory (using, e.g, cp app/assets/images/rails.png test/fixtures/). (If
-you’re using Git, I also recommend updating your .gitignore file as shown in
-Listing 11.69.) To avoid a confusing error, you will also need to configure
-CarrierWave to skip image resizing in tests by creating an initializer file as
-shown in Listing 11.70. The additional assertions in Listing 11.68 check both
-for a file upload field on the Home page and for a valid image attribute on the
-micropost resulting from valid submission. Note the use of the special
-fixture_file_upload method for uploading files as fixtures inside tests.22 Hint:
-To check for a valid picture attribute, use the assigns method mentioned in
-Section 10.1.4 to access the micropost in the create action after valid
-submission.
-
 ### Chapter 12: 
 * Write tests for the stats on the Home and profile pages. Hint: Add to the test
   in Listing 11.27. (Why don’t we have to test the stats on the Home page
