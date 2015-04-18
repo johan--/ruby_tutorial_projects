@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe AddressesController, type: :controller do
   let(:user) { User.create(name: "someone") }
+  let(:order) { Order.create(id: 1, status: 'unsubmitted', user_id: user.id)}
 
   let(:valid_attributes) {
     { line1: "1 Street", 
@@ -20,7 +21,7 @@ RSpec.describe AddressesController, type: :controller do
   }
 
   let(:valid_session) {
-    { order_id: 1 , user_id: user.id}
+    { order_id: order.id , user_id: user.id}
   }
 
   describe "GET #index" do
@@ -68,9 +69,9 @@ RSpec.describe AddressesController, type: :controller do
         expect(assigns(:address)).to be_persisted
       end
 
-      it "redirects to the created address" do
+      it "redirects to the order" do
         post :create, {:address => valid_attributes}, valid_session
-        expect(response).to redirect_to(Address.last)
+        expect(response).to redirect_to(order_path(order))
       end
     end
 
@@ -90,14 +91,23 @@ RSpec.describe AddressesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { line1: "2 Street",
+          line2: "Apt. B",
+          city: "Somewhere",
+          state: "ZZ",
+          zip: "54321",
+          user_id: 1}
       }
 
       it "updates the requested address" do
         address = Address.create! valid_attributes
         put :update, {:id => address.to_param, :address => new_attributes}, valid_session
         address.reload
-        skip("Add assertions for updated state")
+        expect(address.line1).to eq("2 Street")
+        expect(address.line2).to eq("Apt. B")
+        expect(address.city).to eq("Somewhere")
+        expect(address.state).to eq("ZZ")
+        expect(address.zip).to eq("54321")
       end
 
       it "assigns the requested address as @address" do

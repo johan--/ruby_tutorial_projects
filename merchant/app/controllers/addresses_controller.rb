@@ -17,7 +17,7 @@ class AddressesController < ApplicationController
 
   def create
     load_order
-    @address = current_user.address.new(address_params)
+    @address = current_user.addresses.new(address_params)
 
     respond_to do |format|
       if @address.save
