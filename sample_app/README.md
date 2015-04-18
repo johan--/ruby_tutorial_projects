@@ -12,9 +12,6 @@ by [Michael Hartl](http://www.michaelhartl.com/).
   URL the first time. On subsequent login attempts, the forwarding URL should
 revert to the default (i.e., the profile page). Hint: Add to the test in Listing
 9.26 by checking for the right value of session[:forwarding_url].
-* Write an integration test for all the layout links, including the proper
-  behavior for logged-in and non-logged-in users. Hint: Add to the test in
-Listing 5.25 using the log_in_as helper.
 
 ### Chapter 10:
 * Write an integration test for the expired password reset branch in Listing
