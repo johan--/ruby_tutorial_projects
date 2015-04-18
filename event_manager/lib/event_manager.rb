@@ -47,6 +47,7 @@ template_letter = File.read "form_letter.erb"
 erb_template = ERB.new template_letter
 
 hour_of_registration = []
+day_of_registration = []
 
 contents.each do |row|
   id = row[0]
@@ -56,6 +57,7 @@ contents.each do |row|
   datetime = clean_datetime(row[:RegDate])
 
   hour_of_registration << datetime.hour
+  day_of_registration << datetime.wday
 
   legislators = legislators_by_zipcode(zipcode)
 
@@ -64,5 +66,8 @@ contents.each do |row|
   save_thank_you_letters(id,form_letter)
 end
 
-frequency_hash = hour_of_registration.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
-most_common_hour = hour_of_registration.max_by { |v| frequency_hash[v] }
+frequency_hash_of_hour = hour_of_registration.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
+most_common_hour = hour_of_registration.max_by { |v| frequency_hash_of_hour[v] }
+
+frequency_hash_of_day = day_of_registration.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
+most_common_day = day_of_registration.max_by { |v| frequency_hash_of_day[v] }
