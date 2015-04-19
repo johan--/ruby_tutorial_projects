@@ -16,4 +16,16 @@ RSpec.describe Statistics, type: :model do
     stats = Statistics.new
     expect(stats.total_comments).to eq(1)
   end
+
+  it "most popular returns the article with the most comments" do
+    article = Article.create title: "First", body: "Body"
+    article.comments.create author_name: "Commenter", body: "New Comment"
+
+    article2 = Article.create title: "First", body: "Body"
+    article2.comments.create author_name: "Commenter", body: "New Comment"
+    article2.comments.create author_name: "Commenter", body: "Second Comment"
+
+    stats = Statistics.new
+    expect(stats.most_popular).to eq(article2)
+  end
 end
