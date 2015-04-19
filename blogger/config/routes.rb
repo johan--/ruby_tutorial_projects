@@ -14,4 +14,6 @@ Rails.application.routes.draw do
 
   get 'login'  => 'author_sessions#new'
   get 'logout' => 'author_sessions#destroy'
+
+  get '/:id' => 'pages#show'
 end
