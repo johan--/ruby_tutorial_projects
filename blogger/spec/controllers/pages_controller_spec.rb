@@ -24,11 +24,11 @@ RSpec.describe PagesController, type: :controller do
   # Page. As you add validations to Page, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { title: 'Hello', body: 'World' }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { title: nil, body: nil }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +103,15 @@ RSpec.describe PagesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { title: 'Hi', body: 'Planet' }
       }
 
       it "updates the requested page" do
         page = Page.create! valid_attributes
         put :update, {:id => page.to_param, :page => new_attributes}, valid_session
         page.reload
-        skip("Add assertions for updated state")
+        expect(page.title).to eq('Hi')
+        expect(page.body).to eq('Planet')
       end
 
       it "assigns the requested page as @page" do
