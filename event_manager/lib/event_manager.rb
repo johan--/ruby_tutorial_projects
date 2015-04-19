@@ -39,6 +39,15 @@ def save_thank_you_letters(id,form_letter)
   end
 end
 
+def create_frequency_hash(data_array)
+  data_array.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
+end
+
+def find_mode_for_data_array(data_array)
+  frequenct_hash = create_frequency_hash(data_array)
+  data_array.max_by { |v| frequency_hash[v] }
+end
+
 puts "EventManager initialized."
 
 contents = CSV.open 'event_attendees.csv', headers: true, header_converters: :symbol
@@ -66,12 +75,10 @@ contents.each do |row|
   save_thank_you_letters(id,form_letter)
 end
 
-frequency_hash_of_hour = hour_of_registration.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
-most_common_hour = hour_of_registration.max_by { |v| frequency_hash_of_hour[v] }
+most_common_hour = find_mode_for_data_array(hour_of_registration)
 
 days = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday ]
 days_hashmap = Hash[(0..6).zip(days)]
 
-frequency_hash_of_day = day_of_registration.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
-most_common_day_number = day_of_registration.max_by { |v| frequency_hash_of_day[v] }
+most_common_day_number = find_mode_for_data_array(day_of_registration)
 most_common_day = days_hashmap[most_common_day_number.to_i]
