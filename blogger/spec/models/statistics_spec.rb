@@ -8,4 +8,12 @@ RSpec.describe Statistics, type: :model do
     stats = Statistics.new
     expect(stats.total_articles).to eq(2)
   end
+
+  it "total comments returns a count of all the comments for the blog" do
+    article = Article.create title: "First", body: "Body"
+    article.comments.create author_name: "Commenter", body: "New Comment"
+
+    stats = Statistics.new
+    expect(stats.total_comments).to eq(1)
+  end
 end
