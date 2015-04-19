@@ -24,11 +24,11 @@ RSpec.describe PagesController, type: :controller do
   # Page. As you add validations to Page, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    { title: 'Hello', body: 'World' }
+    { title: 'Hello', body: 'World' , slug: 'about'}
   }
 
   let(:invalid_attributes) {
-    { title: nil, body: nil }
+    { title: nil, body: nil, slug: nil }
   }
 
   # This should return the minimal set of values that should be in the session
