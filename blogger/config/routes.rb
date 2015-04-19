@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   get 'logout' => 'author_sessions#destroy'
 
   get '/:id' => 'pages#show'
+  get 'dashboard' => 'dashboard#index'
 end
