@@ -1,4 +1,4 @@
 class EmailAddress < ActiveRecord::Base
   belongs_to :contact, polymorphic: true
-  validates :address, :contact_id, presence: true
+  validates_presence_of :address, :contact_id
 end
