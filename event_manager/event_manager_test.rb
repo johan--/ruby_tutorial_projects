@@ -7,8 +7,13 @@ class EventManagerTest < MiniTest::Unit::TestCase
     assert_equal parsing.clean_phone("6154385000"), "6154385000"
   end
 
-  def test_that_clean_phone_method_parsing_hyphens_from_string
+  def test_that_clean_phone_method_parses_hyphens_from_string
     parsing = ParsingData.new
     assert_equal parsing.clean_phone("414-520-5000"), "4145205000"
+  end
+
+  def test_that_clean_phone_method_parses_parentheses_from_string
+    parsing = ParsingData.new
+    assert_equal parsing.clean_phone("(941)979-2000"), "9419792000"
   end
 end
