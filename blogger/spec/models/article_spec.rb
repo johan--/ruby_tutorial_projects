@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Article, type: :model do
+  let(:article) { Fabricate(:article) }
+
   it { should belong_to(:author) }
   it { should have_many(:comments) }
   it { should have_many(:taggings) }
@@ -13,4 +15,8 @@ RSpec.describe Article, type: :model do
   it { should validate_attachment_content_type(:image).
        allowing('image/png', 'image/jpg','image/jpeg').
        rejecting('text/plain', 'text/xml') }
+
+  it 'is valid' do
+    expect(article).to be_valid
+  end
 end
