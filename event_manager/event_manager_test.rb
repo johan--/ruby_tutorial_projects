@@ -61,4 +61,12 @@ class EventManagerTest < MiniTest::Unit::TestCase
     parsing = ParsingData.new
     assert_equal parsing.clean_datetime("2/2/09 11:29"), DateTime.new(2009,2,2,11,29,0)
   end
+
+  def test_that_create_frequency_hash_returns_correct_hash
+    parsing = ParsingData.new
+    input_array = %w( 1 2 5 6 3 5 5 5 )
+    expected_hash = { "1"=>1, "2"=>1, "5"=>4, "6"=>1, "3"=>1 }
+
+    assert_equal parsing.create_frequency_hash(input_array), expected_hash
+  end
 end
