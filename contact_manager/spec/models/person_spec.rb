@@ -3,18 +3,12 @@ require 'rails_helper'
 RSpec.describe Person, type: :model do
   let(:person) { Fabricate(:person) }
 
+  it { should belong_to(:user) }
+  it { should validate_presence_of(:first_name) }
+  it { should validate_presence_of(:last_name) }
+
   it 'is valid' do
     expect(person).to be_valid
-  end
-
-  it 'is invalid without a first name' do
-    person.first_name = nil
-    expect(person).not_to be_valid
-  end
-
-  it 'is invalid without a last name' do
-    person.last_name = nil
-    expect(person).not_to be_valid
   end
 
   it 'responds with its created phone numbers' do
