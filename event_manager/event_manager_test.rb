@@ -41,4 +41,9 @@ class EventManagerTest < MiniTest::Unit::TestCase
     parsing = ParsingData.new
     assert_equal parsing.clean_zipcode("20010"), "20010"
   end
+
+  def test_that_clean_zipcode_method_add_extra_0s_if_number_is_less_than_5
+    parsing = ParsingData.new
+    assert_equal parsing.clean_zipcode("924"), "00924"
+  end
 end
