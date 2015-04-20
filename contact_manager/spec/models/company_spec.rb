@@ -3,13 +3,11 @@ require 'rails_helper'
 RSpec.describe Company, type: :model do
   let(:company) { Fabricate(:company) }
 
+  it { should belong_to(:user) }
+  it { should validate_presence_of(:name) }
+
   it 'is valid' do
     expect(company).to be_valid
-  end
-
-  it 'is invalid' do
-    company.name = nil
-    expect(company).to_not be_valid
   end
 
   it "responds with its phone numbers after they're created" do
@@ -23,6 +21,6 @@ RSpec.describe Company, type: :model do
   end
 
   it 'converts to a string with name' do
-    expect(company.to_s).to eq('Acme')
+    expect(company.to_s).to eq(company.name)
   end
 end
