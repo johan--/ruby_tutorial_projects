@@ -21,4 +21,9 @@ class EventManagerTest < MiniTest::Unit::TestCase
     parsing = ParsingData.new
     assert_equal parsing.clean_phone("613 565-4000"), "6135654000"
   end
+
+  def test_that_clean_phone_method_parses_periods_from_string
+    parsing = ParsingData.new
+    assert_equal parsing.clean_phone("315.450.6000"), "3154506000"
+  end
 end
