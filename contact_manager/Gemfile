@@ -21,6 +21,8 @@ group :development, :test do
   gem 'sqlite3'
   gem 'capybara'
   gem 'fabrication'
+  gem 'shoulda-matchers'
+  gem 'faker'
 end
 
 group :production do
