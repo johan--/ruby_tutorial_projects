@@ -3,12 +3,11 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { Fabricate(:user) }
 
+  it { should have_many(:people) }
+  it { should have_many(:companies) }
+
   describe 'find_or_create_by_auth' do
     it { expect(User).to respond_to(:find_or_create_by_auth).with(1).argument }
-  end
-
-  it 'has associated people' do
-    expect(user).to respond_to(:people)
   end
 
   it 'builds associated people' do
