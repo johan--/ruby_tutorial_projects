@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe EmailAddress, type: :model do
-  let(:person) { Person.create(:first_name => "Jimbob", :last_name => "Billy") }
-  let(:email_address) { EmailAddress.new(address: 'email@example.com', contact_id: person.id, contact_type: 'Person') }
+  let(:person) { Fabricate(:person) }
+  let(:email_address) { Fabricate(:email_address) }
 
   it { should belong_to(:contact) }
   it { should validate_presence_of(:address) }
