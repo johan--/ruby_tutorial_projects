@@ -22,7 +22,7 @@ RSpec.describe Person, type: :model do
   end
 
   it "convert to a string with last name, first name" do
-    expect(person.to_s).to eq "Smith, Alice"
+    expect(person.to_s).to eq "#{person.last_name}, #{person.first_name}"
   end
 
   it 'is a child of the user' do
