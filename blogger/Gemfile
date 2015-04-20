@@ -16,6 +16,8 @@ gem 'sorcery'
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'faker'
+  gem 'fabrication'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
