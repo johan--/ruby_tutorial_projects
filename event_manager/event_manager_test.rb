@@ -31,4 +31,9 @@ class EventManagerTest < MiniTest::Unit::TestCase
     parsing = ParsingData.new
     assert_equal parsing.clean_phone("14018685000"), "4018685000"
   end
+
+  def test_that_clean_phone_method_returns_an_empty_string_with_invalid_number
+    parsing = ParsingData.new
+    assert_equal parsing.clean_phone("9.82E+00"), ""
+  end
 end
