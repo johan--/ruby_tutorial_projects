@@ -26,4 +26,10 @@ class EncryptorTest < MiniTest::Unit::TestCase
     encryptor = Encryptor.new
     assert_equal encryptor.cipher(13), expected_cipher
   end
+
+  def test_encrypt_string
+    encryptor = Encryptor.new
+
+    assert_equal encryptor.encrypt("Hello", 13), "Uryy!"
+  end
 end
