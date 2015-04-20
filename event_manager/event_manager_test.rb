@@ -51,4 +51,9 @@ class EventManagerTest < MiniTest::Unit::TestCase
     parsing = ParsingData.new
     assert_equal parsing.clean_zipcode("123456"), "12345"
   end
+
+  def test_that_clean_datetime_method_returns_correct_datetime_object
+    parsing = ParsingData.new
+    assert_equal parsing.clean_datetime("11/12/08 10:47"), DateTime.new(2008,11,12,10,47,0)
+  end
 end
