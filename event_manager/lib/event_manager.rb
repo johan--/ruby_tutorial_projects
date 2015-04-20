@@ -49,7 +49,7 @@ class ParsingData
   end
 
   def find_mode_for_data_array(data_array)
-    frequenct_hash = create_frequency_hash(data_array)
+    frequency_hash = create_frequency_hash(data_array)
     data_array.max_by { |v| frequency_hash[v] }
   end
 

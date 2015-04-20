@@ -69,4 +69,12 @@ class EventManagerTest < MiniTest::Unit::TestCase
 
     assert_equal parsing.create_frequency_hash(input_array), expected_hash
   end
+
+  def test_that_find_mode_for_data_array_returns_correct_number
+    parsing = ParsingData.new
+    input_array = %w( 1 2 5 6 3 5 5 5 )
+    expected_hash = { "1"=>1, "2"=>1, "5"=>4, "6"=>1, "3"=>1 }
+
+    assert_equal parsing.find_mode_for_data_array(input_array), "5"
+  end
 end
