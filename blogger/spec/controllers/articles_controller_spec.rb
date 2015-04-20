@@ -20,18 +20,14 @@ require 'rails_helper'
 
 RSpec.describe ArticlesController, type: :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Article. As you add validations to Article, be sure to
-  # adjust the attributes here as well.
+  let(:author) { Fabricate(:author) }
+
   let(:valid_attributes) {
-    #params.require(:article).permit(:title, :body, :tag_list, :image)
     { title: "Title", body: "body" }
-    skip("Add a hash of attributes valid for your model")
   }
 
   let(:invalid_attributes) {
     { title: nil, body: nil }
-    skip("Add a hash of attributes invalid for your model")
   }
 
   # This should return the minimal set of values that should be in the session
@@ -57,6 +53,7 @@ RSpec.describe ArticlesController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new article as @article" do
+      login_user(author)
       get :new, {}, valid_session
       expect(assigns(:article)).to be_a_new(Article)
     end
@@ -64,6 +61,7 @@ RSpec.describe ArticlesController, type: :controller do
 
   describe "GET #edit" do
     it "assigns the requested article as @article" do
+      login_user(author)
       article = Article.create! valid_attributes
       get :edit, {:id => article.to_param}, valid_session
       expect(assigns(:article)).to eq(article)
@@ -73,18 +71,21 @@ RSpec.describe ArticlesController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Article" do
+        login_user(author)
         expect {
           post :create, {:article => valid_attributes}, valid_session
         }.to change(Article, :count).by(1)
       end
 
       it "assigns a newly created article as @article" do
+        login_user(author)
         post :create, {:article => valid_attributes}, valid_session
         expect(assigns(:article)).to be_a(Article)
         expect(assigns(:article)).to be_persisted
       end
 
       it "redirects to the created article" do
+        login_user(author)
         post :create, {:article => valid_attributes}, valid_session
         expect(response).to redirect_to(Article.last)
       end
@@ -92,11 +93,13 @@ RSpec.describe ArticlesController, type: :controller do
 
     context "with invalid params" do
       it "assigns a newly created but unsaved article as @article" do
+        login_user(author)
         post :create, {:article => invalid_attributes}, valid_session
         expect(assigns(:article)).to be_a_new(Article)
       end
 
       it "re-renders the 'new' template" do
+        login_user(author)
         post :create, {:article => invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
@@ -107,23 +110,26 @@ RSpec.describe ArticlesController, type: :controller do
     context "with valid params" do
       let(:new_attributes) {
         { title: "New Title", body: "New body" }
-        skip("Add a hash of attributes valid for your model")
       }
 
       it "updates the requested article" do
+        login_user(author)
         article = Article.create! valid_attributes
         put :update, {:id => article.to_param, :article => new_attributes}, valid_session
         article.reload
-        skip("Add assertions for updated state")
+        expect(article.title).to eq("New Title")
+        expect(article.body).to eq("New body")
       end
 
       it "assigns the requested article as @article" do
+        login_user(author)
         article = Article.create! valid_attributes
         put :update, {:id => article.to_param, :article => valid_attributes}, valid_session
         expect(assigns(:article)).to eq(article)
       end
 
       it "redirects to the article" do
+        login_user(author)
         article = Article.create! valid_attributes
         put :update, {:id => article.to_param, :article => valid_attributes}, valid_session
         expect(response).to redirect_to(article)
@@ -132,12 +138,14 @@ RSpec.describe ArticlesController, type: :controller do
 
     context "with invalid params" do
       it "assigns the article as @article" do
+        login_user(author)
         article = Article.create! valid_attributes
         put :update, {:id => article.to_param, :article => invalid_attributes}, valid_session
         expect(assigns(:article)).to eq(article)
       end
 
       it "re-renders the 'edit' template" do
+        login_user(author)
         article = Article.create! valid_attributes
         put :update, {:id => article.to_param, :article => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
@@ -147,6 +155,7 @@ RSpec.describe ArticlesController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested article" do
+      login_user(author)
       article = Article.create! valid_attributes
       expect {
         delete :destroy, {:id => article.to_param}, valid_session
@@ -154,6 +163,7 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     it "redirects to the articles list" do
+      login_user(author)
       article = Article.create! valid_attributes
       delete :destroy, {:id => article.to_param}, valid_session
       expect(response).to redirect_to(articles_url)
