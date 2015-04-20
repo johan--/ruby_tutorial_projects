@@ -1,4 +1,4 @@
 Fabricator(:company) do
-  name "Acme"
+  name { Faker::App.name }
   user
 end
