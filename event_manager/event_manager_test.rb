@@ -36,4 +36,9 @@ class EventManagerTest < MiniTest::Unit::TestCase
     parsing = ParsingData.new
     assert_equal parsing.clean_phone("9.82E+00"), ""
   end
+
+  def test_that_clean_zipcode_method_returns_self_when_formatted_correctly
+    parsing = ParsingData.new
+    assert_equal parsing.clean_zipcode("20010"), "20010"
+  end
 end
