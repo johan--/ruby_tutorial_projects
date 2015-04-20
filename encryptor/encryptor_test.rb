@@ -32,4 +32,10 @@ class EncryptorTest < MiniTest::Unit::TestCase
 
     assert_equal encryptor.encrypt("Hello", 13), "Uryy!"
   end
+
+  def test_decrypt_string
+    encryptor = Encryptor.new
+
+    assert_equal encryptor.decrypt("Uryy!", 13), "Hello"
+  end
 end
