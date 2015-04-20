@@ -53,4 +53,10 @@ class EncryptorTest < MiniTest::Unit::TestCase
 
     assert_equal encryptor.supported_characters, characters
   end
+
+  def test_crack_method
+    encryptor = Encryptor.new
+
+    assert_includes encryptor.crack("Uryy!"), "Hello"
+  end
 end
