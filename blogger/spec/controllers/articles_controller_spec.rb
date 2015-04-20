@@ -24,10 +24,13 @@ RSpec.describe ArticlesController, type: :controller do
   # Article. As you add validations to Article, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
+    #params.require(:article).permit(:title, :body, :tag_list, :image)
+    { title: "Title", body: "body" }
     skip("Add a hash of attributes valid for your model")
   }
 
   let(:invalid_attributes) {
+    { title: nil, body: nil }
     skip("Add a hash of attributes invalid for your model")
   }
 
@@ -103,6 +106,7 @@ RSpec.describe ArticlesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
+        { title: "New Title", body: "New body" }
         skip("Add a hash of attributes valid for your model")
       }
 

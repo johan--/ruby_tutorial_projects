@@ -15,4 +15,13 @@ class Article < ActiveRecord::Base
     new_or_found_tags = tag_names.collect { |name| Tag.find_or_create_by(name: name) }
     self.tags = new_or_found_tags
   end
+
+  def self.search_by_tag_name(tag_name)
+    if tag_name.blank?
+      [Article.all, nil]
+    else
+      tag = Tag.find_by_name(tag_name)
+      tag ? [tag.articles, tag] : [[], nil]
+    end
+  end
 end

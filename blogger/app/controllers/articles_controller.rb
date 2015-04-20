@@ -2,8 +2,7 @@ class ArticlesController < ApplicationController
   before_filter :require_login, except: [:index, :show]
 
   def index
-    #@articles, @tag = Article.search_by_tag_name(params[:tag])
-    @articles = Article.all
+    @articles, @tag = Article.search_by_tag_name(params[:tag])
     @pages = Page.all
   end
   
