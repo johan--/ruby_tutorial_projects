@@ -157,4 +157,19 @@ RSpec.describe TopicsController, type: :controller do
     end
   end
 
+  describe "GET #upvote" do
+    it "changes vote count by 1" do
+      topic = Topic.create! valid_attributes
+      expect {
+      get :upvote, {:id => topic.to_param}, valid_session
+      }.to change(Vote, :count).by(1)
+    end
+
+    it "redirects to topics path" do
+      topic = Topic.create! valid_attributes
+      get :upvote, {:id => topic.to_param}, valid_session
+      expect(response).to redirect_to(topics_path)
+    end
+  end
+
 end
