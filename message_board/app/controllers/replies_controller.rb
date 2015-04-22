@@ -1,10 +1,12 @@
 class RepliesController < ApplicationController
   before_action :set_reply, only: [:show, :edit, :update, :destroy]
+  before_action :set_post
+  before_action :authenticate_user!
 
   # GET /replies
   # GET /replies.json
   def index
-    @replies = Reply.all
+    @replies = @post.replies.all
   end
 
   # GET /replies/1
@@ -14,7 +16,7 @@ class RepliesController < ApplicationController
 
   # GET /replies/new
   def new
-    @reply = Reply.new
+    @reply = @post.replies.new
   end
 
   # GET /replies/1/edit
@@ -24,11 +26,12 @@ class RepliesController < ApplicationController
   # POST /replies
   # POST /replies.json
   def create
-    @reply = Reply.new(reply_params)
+    @reply = @post.replies.new(reply_params)
+    @reply.user = current_user
 
     respond_to do |format|
       if @reply.save
-        format.html { redirect_to @reply, notice: 'Reply was successfully created.' }
+        format.html { redirect_to @post, notice: 'Reply was successfully created.' }
         format.json { render :show, status: :created, location: @reply }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class RepliesController < ApplicationController
   def update
     respond_to do |format|
       if @reply.update(reply_params)
-        format.html { redirect_to @reply, notice: 'Reply was successfully updated.' }
+        format.html { redirect_to @post, notice: 'Reply was successfully updated.' }
         format.json { render :show, status: :ok, location: @reply }
       else
         format.html { render :edit }
@@ -56,12 +59,16 @@ class RepliesController < ApplicationController
   def destroy
     @reply.destroy
     respond_to do |format|
-      format.html { redirect_to replies_url, notice: 'Reply was successfully destroyed.' }
+      format.html { redirect_to @post, notice: 'Reply was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_post
+      @post = Post.find(params[:post_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_reply
       @reply = Reply.find(params[:id])
