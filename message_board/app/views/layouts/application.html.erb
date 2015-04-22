@@ -8,14 +8,17 @@
 </head>
 <body>
 <p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<ul>
+<ul class="nav nav-tabs">
+  <li role="presentation"><%= link_to "Message Board", root_path %></li>
   <% if user_signed_in? %>
-    <li><%= link_to "Sign Out", destroy_user_session_path %><li>
+    <li role="presentation" class="disabled"><%= link_to current_user.email, "" %></li>
+    <li role="presentation"><%= link_to "Sign Out", destroy_user_session_path, :method => 'delete' %><li>
   <% else %>
-  <li><%= link_to "Sign In", new_user_session_path %><li>
+  <li role="presentation"><%= link_to "Sign In", new_user_session_path %><li>
   <% end %>
 </ul>
+
+<p class="alert"><%= alert %></p>
 
 <%= yield %>
 
