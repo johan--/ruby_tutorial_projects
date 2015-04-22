@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @reply %> |
-<%= link_to 'Back', replies_path %>
+<%= link_to 'Show', post_reply_path(@post, @reply) %> |
+<%= link_to 'Back', @post %>
