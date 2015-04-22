@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :edit, :update, :destroy, :upvote]
+  before_action :set_topic, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   # GET /topics
   # GET /topics.json
@@ -63,6 +63,11 @@ class TopicsController < ApplicationController
 
   def upvote
     @topic.votes.create
+    redirect_to(topics_path)
+  end
+
+  def downvote
+    @topic.votes.last.delete
     redirect_to(topics_path)
   end
 
