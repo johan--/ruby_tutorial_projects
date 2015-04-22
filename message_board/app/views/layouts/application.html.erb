@@ -9,7 +9,7 @@
 <body>
 <p class="notice"><%= notice %></p>
 <ul class="nav nav-tabs">
-  <li role="presentation"><%= link_to "Message Board", root_path %></li>
+  <li role="presentation"><%= link_to "Message Board", posts_path %></li>
   <% if user_signed_in? %>
     <li role="presentation" class="disabled"><%= link_to current_user.email, "" %></li>
     <li role="presentation"><%= link_to "Sign Out", destroy_user_session_path, :method => 'delete' %><li>

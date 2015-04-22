@@ -19,6 +19,9 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe PostsController, type: :controller do
+  let(:user) { User.create(email: "example@rails.com",
+                           password: "password",
+                           password_confirmation: "password") }
 
   let(:valid_attributes) {
     { title: "Title", content: "Content" }
@@ -51,6 +54,7 @@ RSpec.describe PostsController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new post as @post" do
+      sign_in user
       get :new, {}, valid_session
       expect(assigns(:post)).to be_a_new(Post)
     end
@@ -67,18 +71,21 @@ RSpec.describe PostsController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Post" do
+        sign_in user
         expect {
           post :create, {:post => valid_attributes}, valid_session
         }.to change(Post, :count).by(1)
       end
 
       it "assigns a newly created post as @post" do
+        sign_in user
         post :create, {:post => valid_attributes}, valid_session
         expect(assigns(:post)).to be_a(Post)
         expect(assigns(:post)).to be_persisted
       end
 
       it "redirects to the created post" do
+        sign_in user
         post :create, {:post => valid_attributes}, valid_session
         expect(response).to redirect_to(Post.last)
       end
@@ -86,11 +93,13 @@ RSpec.describe PostsController, type: :controller do
 
     context "with invalid params" do
       it "assigns a newly created but unsaved post as @post" do
+        sign_in user
         post :create, {:post => invalid_attributes}, valid_session
         expect(assigns(:post)).to be_a_new(Post)
       end
 
       it "re-renders the 'new' template" do
+        sign_in user
         post :create, {:post => invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
@@ -104,6 +113,7 @@ RSpec.describe PostsController, type: :controller do
       }
 
       it "updates the requested post" do
+        sign_in user
         post = Post.create! valid_attributes
         put :update, {:id => post.to_param, :post => new_attributes}, valid_session
         post.reload
@@ -118,6 +128,7 @@ RSpec.describe PostsController, type: :controller do
       end
 
       it "redirects to the post" do
+        sign_in user
         post = Post.create! valid_attributes
         put :update, {:id => post.to_param, :post => valid_attributes}, valid_session
         expect(response).to redirect_to(post)
@@ -132,6 +143,7 @@ RSpec.describe PostsController, type: :controller do
       end
 
       it "re-renders the 'edit' template" do
+        sign_in user
         post = Post.create! valid_attributes
         put :update, {:id => post.to_param, :post => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
@@ -141,6 +153,7 @@ RSpec.describe PostsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested post" do
+      sign_in user
       post = Post.create! valid_attributes
       expect {
         delete :destroy, {:id => post.to_param}, valid_session
@@ -148,6 +161,7 @@ RSpec.describe PostsController, type: :controller do
     end
 
     it "redirects to the posts list" do
+      sign_in user
       post = Post.create! valid_attributes
       delete :destroy, {:id => post.to_param}, valid_session
       expect(response).to redirect_to(posts_url)
