@@ -1,17 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe "posts/index", type: :view do
+  let(:user) { User.create(email: "example@rails.com",
+                           password: "password",
+                           password_confirmation: "password") }
   before(:each) do
     assign(:posts, [
       Post.create!(
         :title => "MyText",
         :content => "MyContent",
-        :user => nil
+        :user => user
       ),
       Post.create!(
         :title => "MyText",
         :content => "MyContent",
-        :user => nil
+        :user => user
       )
     ])
   end
@@ -20,6 +23,6 @@ RSpec.describe "posts/index", type: :view do
     render
     assert_select "tr>td", :text => "MyText".to_s, :count => 2
     assert_select "tr>td", :text => "MyContent".to_s, :count => 2
-    assert_select "tr>td", :text => nil.to_s, :count => 2
+    assert_select "tr>td", :text => user.email.to_s, :count => 2
   end
 end
