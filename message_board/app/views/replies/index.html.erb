@@ -2,12 +2,12 @@
 
 <h1>Listing Replies</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Content</th>
+      <th>Replies</th>
       <th>User</th>
-      <th>Post</th>
+      <th>Posted on</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,11 +16,11 @@
     <% @replies.each do |reply| %>
       <tr>
         <td><%= reply.content %></td>
-        <td><%= reply.user %></td>
-        <td><%= reply.post %></td>
-        <td><%= link_to 'Show', reply %></td>
-        <td><%= link_to 'Edit', edit_reply_path(reply) %></td>
-        <td><%= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= reply.user.email %></td>
+        <td><%= time_tag reply.post.created_at %></td>
+        <td><%= link_to 'Show', post_replies_path(reply) %></td>
+        <td><%= link_to 'Edit', edit_post_reply_path(reply.post, reply) %></td>
+        <td><%= link_to 'Destroy', post_reply_path(reply.post, reply), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Reply', new_reply_path %>
+<%= button_to 'New Reply', new_post_reply_path, :class => "btn btn-primary" %>
