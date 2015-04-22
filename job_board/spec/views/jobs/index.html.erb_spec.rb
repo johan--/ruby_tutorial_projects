@@ -5,11 +5,11 @@ RSpec.describe "jobs/index", type: :view do
     assign(:jobs, [
       Job.create!(
         :title => "MyText",
-        :description => "MyText"
+        :description => "MyDescription"
       ),
       Job.create!(
         :title => "MyText",
-        :description => "MyText"
+        :description => "MyDescription"
       )
     ])
   end
@@ -17,6 +17,6 @@ RSpec.describe "jobs/index", type: :view do
   it "renders a list of jobs" do
     render
     assert_select "tr>td", :text => "MyText".to_s, :count => 2
-    assert_select "tr>td", :text => "MyText".to_s, :count => 2
+    assert_select "tr>td", :text => "MyDescription".to_s, :count => 2
   end
 end
