@@ -1,19 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @post.title %>
+<h2>
+<%= @post.title %>
+</h2>
 </p>
 
 <p>
-  <strong>Content:</strong>
+  <span>posted by:</span> <%= @post.user.email %>
+  <br>
+  <span>on:</span> <%= time_tag @post.created_at %>
+</p>
+<br>
+<p>
   <%= @post.content %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user %>
-</p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
