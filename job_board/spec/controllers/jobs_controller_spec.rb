@@ -24,11 +24,11 @@ RSpec.describe JobsController, type: :controller do
   # Job. As you add validations to Job, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { title: "Title", description: "Description" }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { title: nil, description: nil }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +103,15 @@ RSpec.describe JobsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { title: "New title", description: "New description" }
       }
 
       it "updates the requested job" do
         job = Job.create! valid_attributes
         put :update, {:id => job.to_param, :job => new_attributes}, valid_session
         job.reload
-        skip("Add assertions for updated state")
+        expect(job.title).to eq("New title")
+        expect(job.description).to eq("New description")
       end
 
       it "assigns the requested job as @job" do
