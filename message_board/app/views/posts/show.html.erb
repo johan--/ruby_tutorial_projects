@@ -1,44 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-<h2>
-<%= @post.title %>
-</h2>
-</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1> <%= @post.title %> </h1>
+  </div>
+  <div class="panel-body">
+    <h3> posted by: <%= @post.user.email %> </h3>
+    <h3> on: <%= time_tag @post.created_at %> </h3>
+    <h3> <%= @post.content %> </h3>
+  </div>
+</div>
 
-<p>
-  <span>posted by:</span> <%= @post.user.email %>
-  <br>
-  <span>on:</span> <%= time_tag @post.created_at %>
-</p>
-<br>
-<p>
-  <%= @post.content %>
-</p>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Replies</th>
-      <th>User</th>
-      <th>Posted on</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <ul class="list-group">
     <% @post.replies.each do |reply| %>
-      <tr>
-        <td><%= reply.content %></td>
-        <td><%= reply.user.email %></td>
-        <td><%= time_tag reply.post.created_at %></td>
-        <td><%= link_to 'Show', post_replies_path(reply) %></td>
-        <td><%= link_to 'Edit', edit_post_reply_path(reply.post, reply) %></td>
-        <td><%= link_to 'Destroy', post_reply_path(reply.post, reply), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <li class="list-group-item">
+        <%= reply.content %>
+        <br>
+        <%= reply.user.email %> on <%= time_tag reply.post.created_at %>
+      </li>
     <% end %>
-  </tbody>
-</table>
+  </ul>
 <%= link_to 'Reply', new_post_reply_path(@post) , :class => "btn btn-info"%>
 
 <br>
