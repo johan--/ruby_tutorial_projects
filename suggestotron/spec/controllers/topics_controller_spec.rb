@@ -81,9 +81,9 @@ RSpec.describe TopicsController, type: :controller do
         expect(assigns(:topic)).to be_persisted
       end
 
-      it "redirects to the created topic" do
+      it "redirects to the topics index" do
         post :create, {:topic => valid_attributes}, valid_session
-        expect(response).to redirect_to(Topic.last)
+        expect(response).to redirect_to(topics_path)
       end
     end
 
@@ -120,10 +120,10 @@ RSpec.describe TopicsController, type: :controller do
         expect(assigns(:topic)).to eq(topic)
       end
 
-      it "redirects to the topic" do
+      it "redirects to the topics index" do
         topic = Topic.create! valid_attributes
         put :update, {:id => topic.to_param, :topic => valid_attributes}, valid_session
-        expect(response).to redirect_to(topic)
+        expect(response).to redirect_to(topics_path)
       end
     end
 
