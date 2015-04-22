@@ -24,11 +24,11 @@ RSpec.describe PostsController, type: :controller do
                            password_confirmation: "password") }
 
   let(:valid_attributes) {
-    { title: "Title", content: "Content" }
+    { title: "Title", content: "Content", user_id: user.id }
   }
 
   let(:invalid_attributes) {
-    { title: nil, content: nil }
+    { title: nil, content: nil, user_id: nil }
   }
 
   # This should return the minimal set of values that should be in the session
