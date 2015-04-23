@@ -1,4 +1,4 @@
-# [RailsBridge Message Board Tutorial](http://docs.railsbridge.org/intermediate-rails/)
+# [RailsBridge Message Board Project](http://docs.railsbridge.org/intermediate-rails/)
 
 ## Further Exercises
 * Profile pages for users (enter user’s name or details, have it display alongside

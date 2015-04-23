@@ -1,4 +1,4 @@
-# [RailsBridge Intro to Rails](http://docs.railsbridge.org/intro-to-rails/)
+# [RailsBridge Suggestron Project](http://docs.railsbridge.org/intro-to-rails/)
 
 ## Further Exercises
 

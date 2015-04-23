@@ -1,5 +1,4 @@
-# [RailsBridge Job Board
-Project](http://docs.railsbridge.org/job-board/job-board)
+# [RailsBridge Job Board Project](http://docs.railsbridge.org/job-board/job-board)
 
 ## Further exercises
 * Add other useful fields to jobs
