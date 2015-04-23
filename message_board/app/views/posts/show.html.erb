@@ -20,8 +20,34 @@
       </li>
     <% end %>
   </ul>
-<%= link_to 'Reply', new_post_reply_path(@post) , :class => "btn btn-info"%>
 
+<%= form_for [@post, @post.replies.new] do |f| %>
+  <% if @post.replies.new.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.replies.new.errors.count, "error") %> prohibited this reply from being saved:</h2>
+
+      <ul>
+      <% @post.replies.new.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-inline">
+    <div class="form-group">
+      <%= f.label :content, 'New Reply', :class => 'col-md-8' %><br>
+      <div class="col-md-8">
+        <%= f.text_area :content, :cols => 40, :rows => 5 %>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="col-md-8">
+        <%= f.submit 'Reply', :class=> 'btn btn-primary'%>
+      </div>
+    </div>
+  </div>
+<% end %>
 <br>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
