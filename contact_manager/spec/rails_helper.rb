@@ -48,4 +48,18 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
   config.include Omniauth
+  config.before(:suite) do
+    begin
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.clean_with(:truncation)
+      DatabaseCleaner.start
+    ensure
+      DatabaseCleaner.clean
+    end
+  end
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
