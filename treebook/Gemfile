@@ -32,6 +32,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'faker'
+  gem 'factory_girl_rails'
 end
 
 #heroku required gems
