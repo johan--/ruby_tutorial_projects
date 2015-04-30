@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430220038) do
+ActiveRecord::Schema.define(version: 20150430221401) do
 
   create_table "albums", force: :cascade do |t|
     t.integer  "user_id"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 20150430220038) do
   end
 
   add_index "albums", ["user_id"], name: "index_albums_on_user_id"
+
+  create_table "documents", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+  end
+
+  add_index "documents", ["user_id"], name: "index_documents_on_user_id"
 
   create_table "pictures", force: :cascade do |t|
     t.integer  "user_id"
@@ -45,8 +57,9 @@ ActiveRecord::Schema.define(version: 20150430220038) do
   create_table "statuses", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "document_id"
   end
 
   add_index "statuses", ["user_id"], name: "index_statuses_on_user_id"
