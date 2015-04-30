@@ -1,0 +1,11 @@
+= simple_form_for(@picture) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :user
+    = f.association :album
+    = f.input :caption
+    = f.input :description
+
+  .form-actions
+    = f.button :submit
