@@ -5,3 +5,4 @@
   for rspec-rails and factory_girl_rails from the start.
 * The backend part should work but the views haven't been edited at all so the
   app doesn't completely work in the browser.
+* Was rebuilding this [app](https://github.com/raysapida/mustached-octo-robot).
