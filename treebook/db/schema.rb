@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430201058) do
+ActiveRecord::Schema.define(version: 20150430215329) do
+
+  create_table "albums", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "albums", ["user_id"], name: "index_albums_on_user_id"
 
   create_table "statuses", force: :cascade do |t|
     t.text     "content"
