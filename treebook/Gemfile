@@ -12,6 +12,19 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'unicorn'
 
+# gems added during the treehouse tutorials
+gem 'bootstrap-sass', '~> 3.2.0.2'
+gem 'devise', '~> 3.4.0'
+gem 'simple_form', '>= 3.1.0.rc2'
+gem 'state_machine', :git => 'https://github.com/seuros/state_machine.git'
+gem 'draper', '~> 1.4.0'
+gem 'js-routes', '~> 0.9.9'
+gem 'paperclip', '>=3'
+#added this for breadcrumbs helper instead of twitter-bootstrap-rails
+gem 'bootstrap-sass-extras', '~> 0.0.2'
+gem 'will_paginate', '~> 3.0'
+gem 'bootstrap-will_paginate'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
