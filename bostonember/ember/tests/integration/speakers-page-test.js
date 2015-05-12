@@ -35,7 +35,13 @@ module('Integration - Speaker Page', {
           }
         });
 
-        return [200, {"Content-Type": "application/json"}, JSON.stringify({speaker: speaker, presentations: presentations})];
+        var speakerPresentations = presentations.filter(function(presentation) {
+          if (presentation.speaker_id === speaker.id) {
+            return true;
+          }
+        });
+
+        return [200, {"Content-Type": "application/json"}, JSON.stringify({speaker: speaker, presentations: speakerPresentations})];
       });
     });
 
@@ -73,5 +79,12 @@ test('Should be able to navigate to a speaker page', function(assert) {
 test('Should be able visit a speaker page', function(assert) {
   visit('/speakers/1').then(function() {
     assert.equal(find('h4').text(), 'Bugs Bunny');
+  });
+});
+
+test('Should list all presentations for a speaker', function(assert) {
+  visit('/speakers/1').then(function(assert) {
+    assert.equal(find('li:contains("What\'s up with Docs?")').length, 1);
+    assert.equal(find('li:contains("Of course, you know, this means war.")').length, 1);
   });
 });
