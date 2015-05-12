@@ -5,5 +5,9 @@ var Router = Ember.Router.extend({
   location: config.locationType
 });
 
+Router.map(function() {
+  this.route('about');
+});
+
 export default Router.map(function() {
 });
