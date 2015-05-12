@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe Account, type: :model do
   let(:account) { create(:account) }
 
+  it { should have_many(:memberships).dependent(:destroy) }
+  it { should have_many(:users).through(:memberships) }
+
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:subdomain) }
   it { should validate_uniqueness_of(:subdomain) }
