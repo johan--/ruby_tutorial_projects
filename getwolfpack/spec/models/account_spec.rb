@@ -7,6 +7,8 @@ RSpec.describe Account, type: :model do
   it { should have_many(:users).through(:memberships) }
   it { should have_one(:owner).through(:owner_membership) }
 
+  it { should accept_nested_attributes_for(:owner) }
+
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:subdomain) }
   it { should validate_uniqueness_of(:subdomain) }
