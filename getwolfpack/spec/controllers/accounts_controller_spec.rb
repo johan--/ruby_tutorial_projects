@@ -7,12 +7,20 @@ RSpec.describe AccountsController, type: :controller do
   end
 
   describe '#new' do
-    it 'shows new account form' do
+    before do
       get :new
+    end
 
+    it 'shows new account form' do
       expect(response).to be_success
       expect(response).to render_template(:new)
+    end
+
+    it 'assigns account as an instance of Account' do
       expect(assigns(:account)).to be_instance_of Account
+    end
+
+    it 'assigns acount owner as an inctance of User' do
       expect(assigns(:account).owner).to be_instance_of User
     end
   end
@@ -20,12 +28,16 @@ RSpec.describe AccountsController, type: :controller do
   describe '#create' do
     it 'creates new account' do
       expect {
-        expect {
-          post :create, account: account_attributes
-        }.to change(User, :count).by(1)
+        post :create, account: account_attributes
       }.to change(Account, :count).by(1)
 
       expect(response).to redirect_to(root_url)
+    end
+
+    it 'creates a new user' do
+      expect {
+        post :create, account: account_attributes
+      }.to change(User, :count).by(1)
     end
 
     it 'renders form for invalid params' do
