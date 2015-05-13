@@ -5,6 +5,7 @@ RSpec.describe Account, type: :model do
 
   it { should have_many(:memberships).dependent(:destroy) }
   it { should have_many(:users).through(:memberships) }
+  it { should have_one(:owner).through(:owner_membership) }
 
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:subdomain) }
