@@ -5,11 +5,12 @@ Rails.application.routes.draw do
     end
   end
 
+  constraints SubdomainRequired do
+    root to: 'dashboards#show', as: 'subdomain_root'
+  end
+
   devise_for :users
   root 'welcome#index'
 
   resource :account, only: [:new, :create]
-  constraints SubdomainRequired do
-    root to: 'dashboards#show', as: 'subdomain_root'
-  end
 end
