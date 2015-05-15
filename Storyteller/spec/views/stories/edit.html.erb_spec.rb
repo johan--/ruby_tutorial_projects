@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "stories/edit", type: :view do
   before(:each) do
-    @story = assign(:story, Story.create!())
+    @story = assign(:story, Story.create!(title: 'Title', body: 'Body'))
   end
 
   it "renders the edit story form" do
