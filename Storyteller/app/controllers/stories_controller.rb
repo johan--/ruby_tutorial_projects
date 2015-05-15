@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: [:show, :edit, :update, :destroy]
+  before_action :load_activities, only: [:index, :show, :new, :edit]
 
   # GET /stories
   # GET /stories.json
@@ -71,5 +72,9 @@ class StoriesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def story_params
     params.require(:story).permit(:title, :body, :user_id)
+  end
+
+  def load_activities
+    @activities = PublicActivity::Activity.order('created_at DESC').limit(20)
   end
 end
