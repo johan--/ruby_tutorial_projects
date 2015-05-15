@@ -19,6 +19,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+  gem 'capybara'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
