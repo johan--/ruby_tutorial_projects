@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-  before_action :set_story, only: [:show, :edit, :update, :destroy]
+  before_action :set_story, only: [:show, :edit, :update, :destroy, :like]
   before_action :load_activities, only: [:index, :show, :new, :edit]
 
   # GET /stories
@@ -63,8 +63,21 @@ class StoriesController < ApplicationController
     redirect_to root_path
   end
 
+  def like
+    without_tracking { @story.increment!(:likes) }
+    @story.create_activity :like
+    flash[:success] = 'Thanks for sharing your opinion!'
+    redirect_to story_path(@story)
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
+  def without_tracking
+    Story.public_activity_off
+    yield if block_given?
+    Story.public_activity_on
+  end
+
   def set_story
     @story = Story.find(params[:id])
   end

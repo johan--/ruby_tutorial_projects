@@ -1,5 +1,5 @@
 <div class="col-sm-3">
-  <ul class="list-group">
+<ul class="list-group">
     <% @activities.each do |activity| %>
         <li class="list-group-item">
         <span class="glyphicon glyphicon-<%= activity.key.match(/\.(.*)/)[1] %>"></span>

@@ -22,6 +22,7 @@
 en:
   activity:
     story:
+      like: 'has liked the story'
       create: 'has told his story'
       destroy: 'has removed the story'
       update: 'has edited the story'
