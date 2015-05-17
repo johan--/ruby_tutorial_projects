@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :comments, dependent: :delete_all
+
   def self.from_omniauth(auth)
     provider = auth.provider
     uid = auth.uid
