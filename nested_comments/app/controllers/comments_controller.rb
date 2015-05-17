@@ -10,13 +10,11 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
 
-    respond_to do |format|
-      if @comment.save
-        flash[:success] = 'Your comment was successfully added!'
-        redirect_to root_url
-      else
-        render 'new'
-      end
+    if @comment.save
+      flash[:success] = 'Your comment was successfully added!'
+      redirect_to root_url
+    else
+      render 'new'
     end
   end
 
