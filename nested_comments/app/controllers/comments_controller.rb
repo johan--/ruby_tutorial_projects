@@ -5,11 +5,6 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render xml: @comment }
-    end
   end
 
   def create
@@ -17,12 +12,10 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        flash[:notice] = 'Comment was successfully created.'
-        format.html { redirect_to(@comment) }
-        format.xml  { render xml: @comment, status: :created, location: @comment }
+        flash[:success] = 'Your comment was successfully added!'
+        redirect_to root_url
       else
-        format.html { render action: 'new' }
-        format.xml  { render xml: @comment.errors, status: :unprocessable_entity }
+        render 'new'
       end
     end
   end
