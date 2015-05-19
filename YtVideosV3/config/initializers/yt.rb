@@ -4,4 +4,6 @@ Yt.configure do |config|
   # YouTube Analytics API
   # YouTube Data API v3
   config.api_key = ENV['YOUTUBE_APP_ID']
+
+  #  config.log_level = :debug
 end
