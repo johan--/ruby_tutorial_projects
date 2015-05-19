@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519120916) do
+ActiveRecord::Schema.define(version: 20150519143059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "token"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "users", ["uid"], name: "index_users_on_uid", unique: true, using: :btree
 
   create_table "videos", force: :cascade do |t|
     t.string   "link"
