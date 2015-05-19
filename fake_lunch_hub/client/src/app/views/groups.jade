@@ -1,0 +1,6 @@
+div.container
+  div(ng-include="'components/navbar/navbar.html'")
+  h1 Groups
+
+  ul(ng-repeat="group in groups")
+    li {{ group.name }}
