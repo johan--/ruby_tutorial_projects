@@ -14,4 +14,30 @@ RSpec.describe VideosController, type: :controller do
       expect(response).to render_template :new
     end
   end
+
+  describe 'POST create' do
+    let(:valid_attributes) {
+      { link: 'https://youtu.be/1Y_pbbRyneo' }
+    }
+
+    let(:invalid_attributes) {
+      { link: nil }
+    }
+
+    it 'increases video count by one' do
+      expect {
+        post :create, { video: valid_attributes }
+      }.to change(Video, :count).by(1)
+    end
+
+    it 'redirects with valid attributes' do
+      post :create, { video: valid_attributes }
+      expect(response).to redirect_to root_path
+    end
+
+    it 'renders no with invalid params' do
+      post :create, { video: invalid_attributes }
+      expect(response).to render_template :new
+    end
+  end
 end
