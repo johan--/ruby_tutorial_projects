@@ -20,7 +20,15 @@
 // for more details see: http://emberjs.com/guides/application/
 MyApp = Ember.Application.create();
 
+// Set the application.
+App = MyApp;
+
+// Set up ember-qunit
+emq.globalize();
+App.Resolver = Ember.DefaultResolver.extend({namespace: App});
+setResolver(App.Resolver.create());
+
 // Set up Ember testing.
-MyApp.rootElement = '#ember-testing';
-MyApp.setupForTesting();
-MyApp.injectTestHelpers();
+App.rootElement = '#ember-testing';
+App.setupForTesting();
+App.injectTestHelpers();
