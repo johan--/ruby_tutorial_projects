@@ -1,3 +1,4 @@
+source 'https://rails-assets.org'
 source 'https://rubygems.org'
 
 gem 'bundler', '>= 1.8.4'
@@ -19,8 +20,13 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'test_squad'
 end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery'
+end
+
+group :development, :test do
+  gem 'rails-assets-qunit'
 end

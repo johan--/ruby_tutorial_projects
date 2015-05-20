@@ -15,9 +15,16 @@
 //= require ember
 //= require ember-data
 //= require_self
-//= require ./my_app
+//= require_tree ./components
+//= require_tree ./models
+//= require_tree ./routes
+//= require_tree ./unit
+//= require_tree ./views
 
 // for more details see: http://emberjs.com/guides/application/
 MyApp = Ember.Application.create();
 
-//= require_tree .
+// Set up Ember testing.
+MyApp.rootElement = '#ember-testing';
+MyApp.setupForTesting();
+MyApp.injectTestHelpers();
