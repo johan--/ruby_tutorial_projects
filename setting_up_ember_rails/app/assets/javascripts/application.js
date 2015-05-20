@@ -15,11 +15,7 @@
 //= require ember
 //= require ember-data
 //= require_self
-//= require_tree ./components
-//= require_tree ./models
-//= require_tree ./routes
-//= require_tree ./unit
-//= require_tree ./views
+//= require_tree
 
 // for more details see: http://emberjs.com/guides/application/
 MyApp = Ember.Application.create();
