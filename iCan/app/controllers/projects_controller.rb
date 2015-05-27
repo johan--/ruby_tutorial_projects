@@ -1,8 +1,5 @@
 class ProjectsController < ApplicationController
-  def index
-    @projects = Project.all
-    authorize! :index, @project
-  end
+  load_and_authorize_resource
 
   def create
     @project = Project.new(project_params)
@@ -12,12 +9,6 @@ class ProjectsController < ApplicationController
     else
       render 'new'
     end
-    authorize! :create, @project
-  end
-
-  def edit
-    @project = Project.find(params[:id])
-    authorize! :edit, @project
   end
 
   def update
@@ -28,7 +19,6 @@ class ProjectsController < ApplicationController
     else
       render 'edit'
     end
-    authorize! :update, @project
   end
 
   def destroy
@@ -39,7 +29,6 @@ class ProjectsController < ApplicationController
       flash[:warning] = 'Cannot destroy this project...'
     end
     redirect_to root_path
-    authorize! :destroy, @project
   end
 
   private
