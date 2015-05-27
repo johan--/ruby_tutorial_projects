@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :load_projects, only: :index
   load_and_authorize_resource
 
   def create
@@ -35,5 +36,9 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:title)
+  end
+
+  def load_projects
+    @projects = Project.accessible_by(current_ability).order('created_at DESC')
   end
 end
