@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:warning] = exception.message
+    redirect_to root_path
+  end
 end
