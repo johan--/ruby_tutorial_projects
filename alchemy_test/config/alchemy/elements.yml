@@ -17,3 +17,11 @@
     type: EssenceRichtext
     default: :article_text
     hint: true
+- name: blog_post
+  contents:
+  - name: blog_post_title
+    type: EssenceText
+  - name: blog_post_image
+    type: EssencePicture
+  - name: blog_post_content
+    type: EssenceRichtext
