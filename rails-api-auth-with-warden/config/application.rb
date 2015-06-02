@@ -18,7 +18,7 @@ Bundler.require(*Rails.groups)
 module RailsApiAuthWithWarden
   class Application < Rails::Application
     config.middleware.insert_after ActionDispatch::ParamsParser, Warden::Manager do |manager|
-      manager.default_strategies :authentication_token
+      manager.default_strategies :authentication_token, :basic_auth
       manager.failure_app = UnauthorizedController
     end
     # Settings in config/environments/* take precedence over those specified here.
