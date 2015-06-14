@@ -1,4 +1,5 @@
 # See https://github.com/voltrb/volt#routes for more info on routes
+rest "/sensor_readings", controller: "sensor_readings", only: [:index, :create]
 
 client '/about', action: 'about'
 
