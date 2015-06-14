@@ -7,5 +7,12 @@ module Main
         .then { |result| render json: result }
         .fail { |error| render json: errors }
     end
+
+    def index
+      store
+        ._sensor_readings
+        .all
+        .then { |reading| render json: reading }
+    end
   end
 end
