@@ -18,6 +18,17 @@
 @import 'bootstrap';
 @import 'bootstrap/theme';
 
+$radiant: #92A524;
+$dire: #C23C2A;
+
+.dire {
+  color: $dire;
+}
+
+.radiant {
+  color: $radiant;
+}
+
 nav {
   img {
     max-width: 48px;
