@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150627230009) do
+ActiveRecord::Schema.define(version: 20150627233534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,33 @@ ActiveRecord::Schema.define(version: 20150627230009) do
 
   add_index "matches", ["user_id"], name: "index_matches_on_user_id", using: :btree
 
+  create_table "players", force: :cascade do |t|
+    t.integer  "match_id"
+    t.string   "uid"
+    t.text     "hero"
+    t.integer  "level"
+    t.integer  "kills"
+    t.integer  "deaths"
+    t.integer  "assists"
+    t.integer  "last_hits"
+    t.integer  "denies"
+    t.integer  "gold"
+    t.integer  "gpm"
+    t.integer  "xpm"
+    t.string   "status"
+    t.integer  "gold_spent"
+    t.integer  "hero_damage"
+    t.integer  "tower_damage"
+    t.integer  "hero_healing"
+    t.text     "items"
+    t.integer  "slot"
+    t.boolean  "radiant"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "players", ["match_id"], name: "index_players_on_match_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "uid"
     t.string   "nickname"
@@ -42,4 +69,5 @@ ActiveRecord::Schema.define(version: 20150627230009) do
   add_index "users", ["uid"], name: "index_users_on_uid", unique: true, using: :btree
 
   add_foreign_key "matches", "users"
+  add_foreign_key "players", "matches"
 end
