@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :matches
+
   def from_omniauth(auth)
     info = auth['info']
     # Convert from 64-bit to 32-bit
