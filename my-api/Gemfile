@@ -9,6 +9,8 @@ gem 'spring', :group => :development
 
 gem 'faker'
 
+gem 'active_model_serializers', '~> 0.8.1'
+
 
 gem 'sqlite3'
 
