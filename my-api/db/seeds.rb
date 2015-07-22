@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+20.times do
+  Movie.create(
+    title: Faker::Lorem.words.join(' '),
+    rating: ['NC17', 'R', 'PG13', 'PG', 'G'].sample
+  )
+end
