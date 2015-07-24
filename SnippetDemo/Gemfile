@@ -45,3 +45,7 @@ end
 
 gem 'rack-mini-profiler'
 gem 'faker'
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
