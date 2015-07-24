@@ -13,9 +13,9 @@
   <tbody>
     <% @snippets.each do |snippet| %>
       <tr>
-        <td><%= snippet.content %></td>
+        <td><%= snippet['content'] %></td>
         <td><%= link_to 'Show', snippet %></td>
-        <td><%= link_to 'Edit', edit_snippet_path(snippet) %></td>
+        <td><%= link_to 'Edit', edit_snippet_path(snippet['id']) %></td>
         <td><%= link_to 'Destroy', snippet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

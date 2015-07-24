@@ -1,10 +1,11 @@
 class SnippetsController < ApplicationController
+  include SnippetsHelper
   before_action :set_snippet, only: [:show, :edit, :update, :destroy]
 
   # GET /snippets
   # GET /snippets.json
   def index
-    @snippets = Snippet.all
+    fetch_snippets
   end
 
   # GET /snippets/1
