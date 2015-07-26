@@ -14,6 +14,14 @@ allowCookies = ->
   $('#cookies-bar').fadeOut()
   return
 
+deleteCookies = ->
+  cookies = Cookies.get()
+
+  for cookie of cookies
+    Cookies.remove cookie
+
+  return
+
 ready = ->
   cookiesAllowed = Cookies.get('allow_cookies')
 
@@ -24,6 +32,12 @@ ready = ->
   # allow cookies by scrolling
   $(document).scroll ->
     allowCookies() unless cookiesAllowed == 'yes'
+
+  # delete cookies
+  $('#delete-cookies').on 'click', (e) ->
+    e.preventDefault()
+    deleteCookies()
+    alert e.target.dataset.done
 
 $(document).ready ready
 $(document).on 'page:load', ready
