@@ -13,3 +13,17 @@ allowCookies = ->
   cookiesAllowed = 'yes'
   $('#cookies-bar').fadeOut()
   return
+
+ready = ->
+  cookiesAllowed = Cookies.get('allow_cookies')
+
+  # allow cookies by clicking on any link (including the cookies bar button)
+  $('a').on 'click', (e) ->
+  allowCookies() unless cookiesAllowed == 'yes'
+
+  # allow cookies by scrolling
+  $(document).scroll ->
+    allowCookies() unless cookiesAllowed == 'yes'
+
+$(document).ready ready
+$(document).on 'page:load', ready
