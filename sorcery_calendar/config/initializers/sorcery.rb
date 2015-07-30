@@ -6,6 +6,7 @@ Rails.application.config.sorcery.submodules = [:external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
+  config.external_providers = [:google]
   # -- core --
   # What controller action to call for non-authenticated users. You can also
   # override the 'not_authenticated' method of course.
@@ -13,6 +14,14 @@ Rails.application.config.sorcery.configure do |config|
   #
   # config.not_authenticated_action =
 
+  config.google.key = "<your key here>"
+  config.google.secret = "<your key here>"
+  config.google.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=google"
+  config.google.user_info_mapping = {
+    :email => "email",
+    :first_name => "given_name",
+    :last_name => "family_name"
+  }
 
   # When a non logged in user tries to enter a page that requires login, save
   # the URL he wanted to reach, and send him there after login, using 'redirect_back_or_to'.
@@ -128,11 +137,6 @@ Rails.application.config.sorcery.configure do |config|
   # config.github.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=github"
   # config.github.user_info_mapping = {:email => "name"}
   #
-  # config.google.key = ""
-  # config.google.secret = ""
-  # config.google.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=google"
-  # config.google.user_info_mapping = {:email => "email", :username => "name"}
-  #
   # config.vk.key = ""
   # config.vk.secret = ""
   # config.vk.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=vk"
@@ -173,6 +177,7 @@ Rails.application.config.sorcery.configure do |config|
 
   # --- user config ---
   config.user_config do |user|
+    user.authentications_class = Authentication
     # -- core --
     # specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
@@ -430,13 +435,6 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `10 * 60`
     #
     # user.activity_timeout =
-
-
-    # -- external --
-    # Class which holds the various external provider data for this user.
-    # Default: `nil`
-    #
-    # user.authentications_class =
 
 
     # User's identifier in authentications class.
