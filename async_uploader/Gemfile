@@ -30,6 +30,7 @@ end
 gem 'bootstrap-sass'
 gem 'remotipart', '~> 1.2'
 gem 'figaro'
+gem 'jquery-fileupload-rails', github: 'Springest/jquery-fileupload-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
