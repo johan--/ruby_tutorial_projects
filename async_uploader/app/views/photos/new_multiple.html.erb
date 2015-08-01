@@ -19,6 +19,11 @@
 
 <script>
   $(document).ready(function() {
-    $('#new_photo').fileupload({dataType: 'script'});
+    var multiple_photos_form = $('#new_photo');
+    multiple_photos_form.fileupload({dataType: 'script'});
+
+    multiple_photos_form.on('fileuploadsubmit', function (e, data) {
+      data.formData = {'photo[author]': $('#photo_author').val()};
+    });
   });
 </script>
