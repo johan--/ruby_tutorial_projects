@@ -4,7 +4,7 @@
   <%= render @photos %>
 </ul>
 
-<%= form_for @photo do |f| %>
+<%= form_for @photo, remote: true do |f| %>
   <div class="form-group">
     <%= f.label :author %>
     <%= f.text_field :author, class: 'form-control' %>
