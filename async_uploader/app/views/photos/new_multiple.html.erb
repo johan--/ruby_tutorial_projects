@@ -19,8 +19,18 @@
 
 <script>
   $(document).ready(function() {
-    var multiple_photos_form = $('#new_photo');
-    multiple_photos_form.fileupload({dataType: 'script'});
+  var multiple_photos_form = $('#new_photo');
+    multiple_photos_form.fileupload({
+      dataType: 'script',
+      add: function (e, data) {
+        types = /(\.|\/)(gif|jpe?g|png|bmp)$/i;
+        file = data.files[0];
+        if (types.test(file.type) || types.test(file.name)) {
+          data.submit();
+        }
+        else { alert(file.name + " must be GIF, JPEG, BMP or PNG file"); }
+        }
+    });
 
     multiple_photos_form.on('fileuploadsubmit', function (e, data) {
       data.formData = {'photo[author]': $('#photo_author').val()};
