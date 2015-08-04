@@ -44,3 +44,6 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
+gem 'ember-rails'
+gem 'ember-source', '~> 1.8.1'
+gem 'emblem-rails'
