@@ -17,6 +17,7 @@
   </div>
 
   <div class="progress-wrapper">
+    <p>Bitrate: <span class="bitrate"></span></p>
     <div class="progress">
       <div class="progress-bar" role="progressbar">
         0%
@@ -57,6 +58,15 @@
     });
 
     multiple_photos_form.on('fileuploadprogressall', function (e, data) {
+      var progress = parseInt(data.loaded / data.total * 100, 10);
+      progress_bar.css('width', progress + '%').text(progress + '%');
+    });
+
+    var bitrate = wrapper.find('.bitrate');
+
+    multiple_photos_form.on('fileuploadprogressall', function (e, data) {
+      bitrate.text((data.bitrate / 1024).toFixed(2) + 'Kb/s');
+
       var progress = parseInt(data.loaded / data.total * 100, 10);
       progress_bar.css('width', progress + '%').text(progress + '%');
     });
