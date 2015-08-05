@@ -15,6 +15,14 @@
     <%= f.label :image %>
     <%= f.file_field :image, required: true %>
   </div>
+
+  <div class="progress-wrapper">
+    <div class="progress">
+      <div class="progress-bar" role="progressbar">
+        0%
+      </div>
+    </div>
+  </div>
 <% end %>
 
 <script>
@@ -35,5 +43,22 @@
     multiple_photos_form.on('fileuploadsubmit', function (e, data) {
       data.formData = {'photo[author]': $('#photo_author').val()};
     });
-  });
+
+    var wrapper = multiple_photos_form.find('.progress-wrapper');
+    var progress_bar = wrapper.find('.progress-bar');
+
+    multiple_photos_form.on('fileuploadstart', function() {
+      wrapper.show();
+    });
+
+    multiple_photos_form.on('fileuploaddone', function() {
+      wrapper.hide();
+      progress_bar.width(0); // Revert progress bar's width back to 0 for future uploads
+    });
+
+    multiple_photos_form.on('fileuploadprogressall', function (e, data) {
+      var progress = parseInt(data.loaded / data.total * 100, 10);
+      progress_bar.css('width', progress + '%').text(progress + '%');
+    });
+  })
 </script>
