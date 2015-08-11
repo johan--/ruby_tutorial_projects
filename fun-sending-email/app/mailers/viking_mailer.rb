@@ -1,0 +1,2 @@
+class VikingMailer < ApplicationMailer
+end
