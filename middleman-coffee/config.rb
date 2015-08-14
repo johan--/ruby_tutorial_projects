@@ -1,4 +1,19 @@
 ###
+# React
+###
+require 'sprockets/coffee-react'
+
+::Sprockets.register_preprocessor 'application/javascript', ::Sprockets::CoffeeReact
+::Sprockets.register_engine '.cjsx', ::Sprockets::CoffeeReactScript
+::Sprockets.register_engine '.js.cjsx', ::Sprockets::CoffeeReactScript
+
+activate :react
+
+after_configuration do
+  sprockets.append_path File.dirname(::React::Source.bundled_path_for('react.js'))
+end
+
+###
 # Compass
 ###
 
