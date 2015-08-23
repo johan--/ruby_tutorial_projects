@@ -10,20 +10,9 @@
     <h4>Advanced Search</h4>
     <%= search_form_for @search do |f| %>
       <%= f.condition_fields do |c| %>
-        <div class="large-4 small-4 columns">
-          <%= c.attribute_fields do |a| %>
-            <%= a.attribute_select nil, class: "radius" %>
-          <% end %>
-        </div>
-        <div class="large-4 small-4 columns">
-          <%= c.predicate_select Hash.new, class: "radius" %>
-        </div>
-        <div class="large-4 small-4 columns">
-          <%= c.value_fields do |v| %>
-              <%= v.text_field :value, class: "radius" %>
-          <% end %>
-        </div>
+        <%= render "condition_fields", f: c %>
       <% end %>
+      <p><%= link_to_add_fields "Add Conditions", f, :condition %></p>
       <h5>Sort</h5>
       <div class="column">
       <%= f.sort_fields do |s| %>
