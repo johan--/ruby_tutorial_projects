@@ -29,6 +29,13 @@
           <li><%=link_to "Login", new_user_session_path%></li>
         <%end%>
       </ul>
+      <ul class="left">
+        <li class="has-form">
+        <div class="row collapse">
+          <%= yield(:search) %>
+        </div>
+        </li>
+      </ul>
     </section>
 
   </nav>

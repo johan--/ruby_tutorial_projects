@@ -2,7 +2,8 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: [:show]
 
   def index
-    @movies = Movie.all
+    @search = Movie.search(params[:q])
+    @movies = @search.result
   end
 
   def show
