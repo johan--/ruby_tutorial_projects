@@ -3,6 +3,7 @@ class TransactionsController < ApplicationController
   before_action :check_cart!
 
   def new
+    gon.client_token = generate_client_token
   end
 
   def create
