@@ -10,6 +10,9 @@ class ContactsApi < Grape::API
 
   desc 'Create an contact'
   params do
+    optional :name, type: String, desc: 'The Name of the contact'
+    optional :phone, type: String, desc: 'The Phone of the contact'
+    optional :email, type: String, desc: 'The Email Address of the contact'
   end
 
   post do
@@ -29,6 +32,9 @@ class ContactsApi < Grape::API
 
     desc 'Update an contact'
     params do
+      optional :name, type: String, desc: 'The Name of the contact'
+      optional :phone, type: String, desc: 'The Phone of the contact'
+      optional :email, type: String, desc: 'The Email Address of the contact'
     end
     put do
       # fetch contact record and update attributes.  exceptions caught in app.rb
